@@ -59,8 +59,6 @@ class Command(BaseCommand):
                                 tag=tag
                             )
                             recordtag.save()
-                        
-                        
                 
 
     def add_arguments(self, parser):

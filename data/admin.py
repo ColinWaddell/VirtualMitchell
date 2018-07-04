@@ -21,7 +21,6 @@ class RecordAdmin(admin.ModelAdmin):
     inlines = [RecordTagInline]
 
 
-# Register your models here.
 admin.site.register(Record, RecordAdmin)
 admin.site.register(RecordTag, RecordTagAdmin)
 admin.site.register(Tag)

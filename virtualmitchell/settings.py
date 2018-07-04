@@ -14,7 +14,7 @@ import os
 import environ
 
 
-# Load up environ
+# Load up django-environ
 root = environ.Path(__file__)
 
 env = environ.Env(DEBUG=(bool, False))
