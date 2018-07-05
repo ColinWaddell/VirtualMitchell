@@ -14,8 +14,7 @@ from django_filters.views import FilterView
 from django_tables2.views import SingleTableMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
-
-class NCRs(SingleTableMixin, FilterView):
+class RecordsView(SingleTableMixin, FilterView):
     table_class = RecordTable
     model = Record
     template_name = 'records.html'

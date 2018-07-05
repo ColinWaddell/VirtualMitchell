@@ -1,7 +1,5 @@
 {% load bootstrap4 %}
 {% load static %}
-{% url 'ncr:search' as search_url %}
-{% url 'ncr:index' as parts_index_url %}
 
 <div class="pos-f-t">
   <div class="collapse" id="filterToggleContent">
@@ -9,7 +7,7 @@
     <div class="bg-light p-4">
         {% if filter %}
             <h4>Search...</h4>
-            <form action="{%url 'ncr:search' %}" method="get" class="form-group">
+            <form action="{%url 'www:search' %}" method="get" class="form-group">
                 {% bootstrap_form filter.form layout='horizontal' size='small' show_label=True label_class='col-md-3 col-form-label' %}
                 {% bootstrap_button '<span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search' button_class 'btn-primary' %}
                 {% bootstrap_button '<span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Clear Filters' button_class='btn-dark' button_type='link' href=parts_index_url %}
@@ -21,24 +19,18 @@
 
   <nav class="navbar navbar-dark bg-dark fixed-top">
     <!-- Toggle Search -->
-    <a href="{% url 'index:index' %}" class="navbar-brand">
+    <a href="{% url 'www:index' %}" class="navbar-brand">
 	<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
     </a>
-    <a class="navbar-brand col-auto mr-auto" href="{% url 'ncr:index' %}">
-        NCR Register{% if title %}: {{ title }}{% endif %}
+    <a class="navbar-brand col-auto mr-auto" href="{% url 'www:index' %}">
+        Virtual Mitchell{% if title %}: {{ title }}{% endif %}
     </a>
 
     <ul class="nav col-auto mr-4">
         <li class="nav-item">
-            {% url 'ncr:index' as index_url %}
-            <a class="nav-link{% if request.path == index_url %} active {% endif %}" href="{% url 'ncr:index' %}">
+            {% url 'www:index' as index_url %}
+            <a class="nav-link{% if request.path == index_url %} active {% endif %}" href="{% url 'www:index' %}">
                 <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> View NCRs
-            </a>
-        </li>
-        <li class="nav-item">
-            {% url 'ncr:add' as add_url %}
-            <a class="nav-link {% if request.path == add_url %} active {% endif %}" href="{% url 'ncr:add' %}">
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add NCR
             </a>
         </li>
     </ul>
@@ -52,7 +44,7 @@
   </nav>
 </div>
 
-<div class="container-fluid" {% if not request.path == search_url %} hidden {% endif %}>
+<div class="container-fluid">
     <div class="row">
         <div class="col">
             <h4>Search:
@@ -61,7 +53,7 @@
                         &nbsp;<span class="badge badge-pill badge-secondary font-weight-light">{{ item.label }}</span>
                     {% endif %}
                 {% endfor %}
-                &nbsp;<a href="{% url 'ncr:index' %}" class="font-weight-light">clear</a>
+                &nbsp;<a href="{% url 'www:index' %}" class="font-weight-light">clear</a>
             </h4>
         </div>
     </div>

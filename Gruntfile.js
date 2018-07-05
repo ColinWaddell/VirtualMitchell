@@ -1,16 +1,14 @@
 module.exports = function (grunt) {
     grunt.initConfig({
         watch: {
-            files: ['parts/static/sass/**/*.{scss,sass}'],
+            files: ['www/static/sass/**/*.{scss,sass}'],
             tasks: ['sass']
         },
 
         sass: {
             dist: {
                 files: {
-                    'parts/static/css/parts.css': 'parts/static/sass/manifest.scss',
-                    'ncr/static/css/ncr.css': 'ncr/static/sass/manifest.scss',
-                    'common/static/css/cstracker.css': 'common/static/scss/manifest.scss'
+                    'www/static/css/vm.css': 'www/static/sass/manifest.scss',
                 }
             }
         },
@@ -19,8 +17,8 @@ module.exports = function (grunt) {
             dev: {
                 bsFiles: {
                     src : [
-                        'parts/static/css/*.css',
-                        'parts/static/js/*.js',
+                        'www/static/css/*.css',
+                        'www/static/js/*.js',
                         '**/*.py',
                         '**/*.html'
                     ]
@@ -45,7 +43,7 @@ module.exports = function (grunt) {
                     'node_modules/popper.js/dist/umd/popper.js',
                     'node_modules/bootstrap/dist/js/bootstrap.js'
                 ],  
-                dest: 'common/static/js/cstracker.js'  
+                dest: 'www/static/js/vm.js'  
             }  
         },
 

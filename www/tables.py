@@ -6,7 +6,12 @@ from data.models import Record
 
 class RecordTable(tables.Table):
 
-    # ncr_number = tables.TemplateColumn('<a href="{% url \'ncr:edit\' record.id %}">{{ record }}</a>')
+    image_url = tables.TemplateColumn('<img src="http://www.mitchelllibrary.org/virtualmitchell/{{ record.image_url }}" alt="..." class="img-thumbnail">')
+    tags = tables.TemplateColumn('''
+        {% for tag in record.tags %}
+            <a href="{% url 'www:search' %}?caption__icontains={{ tag }}">{{ tag }}</a><br />
+        {% endfor %}
+    ''')
 
     class Meta:
         model = Record
@@ -26,4 +31,5 @@ class RecordTable(tables.Table):
             "image_url",
             "description",
             "caption",
+            "tags"
         ]

@@ -46,7 +46,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrap4',
+    'django_tables2',
     'data.apps.DataConfig',
+    'www.apps.WWWConfig',
 ]
 
 MIDDLEWARE = [
@@ -121,7 +124,19 @@ USE_L10N = True
 USE_TZ = True
 
 
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
+public_root = root.path('/')
+
 STATIC_URL = '/static/'
+
+if DEBUG:
+    STATIC_ROOT = os.path.join(BASE_DIR, "static")
+else:
+    STATIC_ROOT = public_root('static')
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "www/static"),
+]

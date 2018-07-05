@@ -12,6 +12,10 @@ class Record(models.Model):
     description = models.TextField(null=True, blank=True)
     caption = models.TextField(null=True, blank=True)
 
+    @property
+    def tags(self):
+        return [rt.tag for rt in self.recordtag_set.all()]
+
     def __str__(self):
         return self.record_number
 

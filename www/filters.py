@@ -8,7 +8,6 @@ class RecordFilter(django_filters.FilterSet):
         fields = {
             "record_number": ["icontains"],
             "area": ["exact"],
-            "serial_number": ["icontains"],
             "date_raw": ["icontains"],
             "date": ["icontains"],
             "street": ["icontains"],
