@@ -5,6 +5,7 @@ class Record(models.Model):
     record_number = models.CharField(max_length=5)
     area = models.TextField(null=True, blank=True)
     date_raw = models.TextField(null=True, blank=True)
+    date = models.DateField(null=True, blank=True)
     street = models.TextField(null=True, blank=True)
     number = models.TextField(null=True, blank=True)
     image_url = models.TextField(null=True, blank=True)

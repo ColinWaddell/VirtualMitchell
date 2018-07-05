@@ -1,0 +1,14 @@
+{# tutorial/templates/tutorial/people.html #}
+{% load render_table from django_tables2 %}
+{% load bootstrap4 %}
+{% load static %}
+
+<!doctype html>
+<html>
+    <head>
+        <title>Parts Register{% if title %}: {{ title }}{% endif %}</title>
+        <link href="{% static 'css/cstracker.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'css/ncr.css' %}" rel="stylesheet" type="text/css">
+        <script src="{% static 'js/cstracker.js' %}"></script>
+    </head>
+    <body>

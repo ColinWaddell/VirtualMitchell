@@ -8,6 +8,7 @@ db.sqlite3
 .DS_Store
 
 # Custom
+www/migrations/
 data/migrations/
 data/static/css/
 static/

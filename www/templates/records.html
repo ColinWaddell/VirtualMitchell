@@ -1,0 +1,29 @@
+{# tutorial/templates/tutorial/people.html #}
+{% load render_table from django_tables2 %}
+{% load bootstrap4 %}
+{% load static %}
+
+
+{% include 'ncr-header.html' with title="View Parts" %}
+{% include 'ncr-navbar.html' with title="View Parts" %}
+
+<div class="container-fluid">
+    <div class="row justify-content-md-center">
+        {% url 'parts:added' as added_url %}
+        {% if request.path == added_url %}
+            <div class="alert alert-success col-3" role="alert">
+                <h3 class="text-center">Part Added</h3>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="big-table">
+    <div class="row">
+        <div class="col">
+            {% render_table table 'django_tables2/bootstrap4.html' %}
+        </div>
+    </div>
+</div>
+
+{% include 'ncr-footer.html' %}

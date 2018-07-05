@@ -1,0 +1,32 @@
+{
+  "name": "virtual-mitchell",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "",
+  "license": "",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "devDependencies": {
+    "grunt-browser-sync": "^2.2.0",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-shell": "^2.1.0",
+    "grunt-shell-spawn": "^0.3.10"
+  },
+  "dependencies": {
+    "bootstrap": "^4.1.1",
+    "grunt-contrib-uglify": "^3.3.0",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.3"
+  }
+}
