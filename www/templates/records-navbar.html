@@ -1,5 +1,6 @@
 {% load bootstrap4 %}
 {% load static %}
+{% url 'www:search' as search_url %}
 
 <div class="pos-f-t">
   <div class="collapse" id="filterToggleContent">
@@ -44,7 +45,7 @@
   </nav>
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid" {% if not request.path == search_url %} hidden {% endif %}>
     <div class="row">
         <div class="col">
             <h4>Search:

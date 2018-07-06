@@ -1,13 +1,5 @@
 from django.contrib import admin
-from .models import Record, RecordTag, Tag
-
-
-class RecordTagInline(admin.TabularInline):
-    model = RecordTag
-
-
-class RecordTagAdmin(admin.ModelAdmin):
-    model = RecordTag
+from .models import Record, Tag
 
 
 class RecordAdmin(admin.ModelAdmin):
@@ -18,9 +10,6 @@ class RecordAdmin(admin.ModelAdmin):
         'area',
         'street'
     )
-    inlines = [RecordTagInline]
-
 
 admin.site.register(Record, RecordAdmin)
-admin.site.register(RecordTag, RecordTagAdmin)
 admin.site.register(Tag)

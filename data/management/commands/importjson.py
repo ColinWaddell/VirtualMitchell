@@ -4,7 +4,7 @@ from dateparser import parse as date_parse
 from glob import iglob
 from json import load as load_json
 from django.core.management.base import BaseCommand
-from data.models import Record, RecordTag, Tag
+from data.models import Record, Tag
 from collections import Iterable
 
 JSONPATTERN = '/*.json'
@@ -37,7 +37,6 @@ class Command(BaseCommand):
         json_folder = folder + JSONPATTERN
 
         print("Nuking the DB:", end='')
-        RecordTag.objects.all().delete()
         Record.objects.all().delete()
         Tag.objects.all().delete()
         print("Done")
@@ -80,17 +79,10 @@ class Command(BaseCommand):
                             tag = Tag(title=tag_title)
                             tag.save()
 
-                        try:
-                            recordtag = RecordTag.objects.get(
-                                record=record,
-                                tag=tag
-                            )
-                        except RecordTag.DoesNotExist:
-                            recordtag = RecordTag(
-                                record=record,
-                                tag=tag
-                            )
-                            recordtag.save()
+                        record.tags.add(tag)
+                        record.save()
+
+
 
     def add_arguments(self, parser):
         parser.add_argument('--folder', type=str)

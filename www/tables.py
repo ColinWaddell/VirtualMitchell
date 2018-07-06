@@ -8,8 +8,8 @@ class RecordTable(tables.Table):
 
     image_url = tables.TemplateColumn('<img src="http://www.mitchelllibrary.org/virtualmitchell/{{ record.image_url }}" alt="..." class="img-thumbnail">')
     tags = tables.TemplateColumn('''
-        {% for tag in record.tags %}
-            <a href="{% url 'www:search' %}?caption__icontains={{ tag }}">{{ tag }}</a><br />
+        {% for tag in record.all_tags %}
+            <a href="{% url 'www:search' %}?&tags={{ tag.pk }}">{{ tag }}</a><br />
         {% endfor %}
     ''')
 
@@ -21,15 +21,3 @@ class RecordTable(tables.Table):
             'class': 'table table-striped table-bordered table-hover table-sm'
         }
         exclude = ("id", )
-        sequence = [
-            "record_number",
-            "area",
-            "date_raw",
-            "date",
-            "street",
-            "number",
-            "image_url",
-            "description",
-            "caption",
-            "tags"
-        ]
