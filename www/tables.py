@@ -6,11 +6,17 @@ from data.models import Record
 
 class RecordTable(tables.Table):
 
-    image_url = tables.TemplateColumn('<img src="http://www.mitchelllibrary.org/virtualmitchell/{{ record.image_url }}" alt="..." class="img-thumbnail">')
+    image_url = tables.TemplateColumn('''
+        <a href="http://www.mitchelllibrary.org/virtualmitchell/{{ record.image_url }}" target="_blank">
+            <img src="http://www.mitchelllibrary.org/virtualmitchell/{{ record.image_url }}" alt="{{ record.description }}" class="img-thumbnail col-12">
+        </a>
+    ''')
     tags = tables.TemplateColumn('''
-        {% for tag in record.all_tags %}
-            <a href="{% url 'www:search' %}?&tags={{ tag.pk }}">{{ tag }}</a><br />
-        {% endfor %}
+        <ul>
+            {% for tag in record.all_tags %}
+                <li><a href="{% url 'www:search' %}?&tags={{ tag.pk }}">{{ tag }}</a></li>
+            {% endfor %}
+        </ul>
     ''')
 
     class Meta:

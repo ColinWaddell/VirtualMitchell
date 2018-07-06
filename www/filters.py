@@ -10,7 +10,7 @@ class RecordFilter(django_filters.FilterSet):
         model = Record
         fields = {
             "record_number": ["icontains"],
-            "date": ['exact', 'lte', 'gte'],
+            "date": ['lte', 'gte'],
             "area": ["exact"],
             "street": ["icontains"],
             "number": ["icontains"],
