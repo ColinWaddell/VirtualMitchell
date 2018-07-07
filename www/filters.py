@@ -11,7 +11,6 @@ class RecordFilter(django_filters.FilterSet):
     class Meta:
         model = Record
         fields = {
-            "record_number": ["icontains"],
             "area": ["exact"],
             "street": ["icontains"],
             "date": ['lt', 'gt'],

@@ -3,14 +3,14 @@
 {% url 'www:search' as search_url %}
 {% url 'www:index' as home_url %}
 
-    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0">
         <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Virtual Mitchell</a>
         <input class="form-control form-control-dark w-100" type="text" id="quicksearch" placeholder="Search Tags..." aria-label="Search Tags...">
-        <ul class="navbar-nav px-3">
+        <!-- <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
                 <a class="nav-link" href="#">Virtual Mitchell</a>
             </li>
-        </ul>
+        </ul> -->
     </nav>
 
     <div class="container-fluid">
@@ -29,6 +29,12 @@
                                 </div>
                             </form>
                             {% endif %}   
+                        </li>
+                        <li class="nav-item border-top">
+                                <div class="col small">
+                                    <p>Site built by <a href="http://colinwaddell.com" target="_blank">Colin Waddell</a></p>
+                                    <p>All content belongs to Glasgow City Council's <a href="http://www.mitchelllibrary.org/virtualmitchell/" target="_blank">Virtual Mitchell</a></p>
+                                </div>
                         </li>
                     </ul>                   
                 </div>

@@ -38,7 +38,7 @@ class RecordTable(tables.Table):
     )
     tags = tables.TemplateColumn('''
             {% for tag in record.all_tags %}
-                <a href="{% url 'www:search' %}?&tags={{ tag.pk }}">{{ tag }}</a>{% if not forloop.last %}, {% endif %}
+                <a href="{% url 'www:search' %}?&tags={{ tag.pk }}">{{ tag }}</a>{% if not forloop.last %},<br>{% endif %}
             {% endfor %}
         ''',
         attrs={
@@ -47,7 +47,7 @@ class RecordTable(tables.Table):
             }
         },
     )
-    address = tables.TemplateColumn(
+    street = tables.TemplateColumn(
         '''
             {% if record.number %}{{ record.number }}, {% endif %}
             {% if record.street %}{{ record.street }}<br />{% endif %}
@@ -58,6 +58,7 @@ class RecordTable(tables.Table):
                 'width': "300"
             }
         },
+        verbose_name="Address"
     )
     date = tables.TemplateColumn(
         '''
@@ -81,7 +82,7 @@ class RecordTable(tables.Table):
         fields = (
             "image_url",
             "description",
-            "address",
+            "street",
             "date",
             "tags",
         )
