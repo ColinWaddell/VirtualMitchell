@@ -5,25 +5,34 @@
 {% include 'records-header.html' with title="Home" %}
 {% include 'records-navbar.html'%}
 
-
-
-
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-          <h1 class="h2">Browse Records</h1>
-          <!-- <div class="btn-toolbar mb-2 mb-md-0">
-            <div class="btn-group mr-2">
-              <button class="btn btn-sm btn-outline-secondary">Share</button>
-              <button class="btn btn-sm btn-outline-secondary">Export</button>
-            </div>
-            <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
-              <span data-feather="calendar"></span>
-              This week
-            </button>
-          </div> -->
-        </div>
-
-        {% render_table table 'django_tables2/bootstrap4.html' %}
+        {% render_table table 'records-table.html' %}
     </main>
+
+<script>
+
+$(document).keyup(function(e) {
+    var KEY_LEFT = 37;
+    var KEY_RIGHT = 39;
+    var NEXT = $('li.next > a').length ? $('li.next > a')[0].href : null;
+    var PREV = $('li.previous > a').length ? $('li.previous > a')[0].href : null;
+
+    switch(e.keyCode){
+      case KEY_LEFT:
+        if (PREV){
+          window.location.href = PREV;
+        }
+        break;
+      
+      case KEY_RIGHT:
+        if(NEXT){
+          window.location.href = NEXT;
+        }
+        break;
+    }
+
+});
+
+</script>
 
 {% include 'records-footer.html' %}

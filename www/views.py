@@ -19,5 +19,5 @@ class RecordsView(SingleTableMixin, FilterView):
     table_class = RecordTable
     model = Record
     template_name = 'records.html'
-    paginate_by = 50
+    paginate_by = 25
     filterset_class = RecordFilter
