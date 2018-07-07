@@ -4,7 +4,7 @@
 {% url 'www:index' as home_url %}
 
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Virtual Mitchell</a>
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="{% url 'www:index' %}">Virtual Mitchell</a>
         <input class="form-control form-control-dark w-100" type="text" id="quicksearch" placeholder="Search Tags..." aria-label="Search Tags...">
         <!-- <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
@@ -20,11 +20,10 @@
                     <ul class="nav flex-column">
                         <li class="nav-item">
                             {% if filter %}
-                            <h5 class="col">Filter:</h5>
                             <form action="{%url 'www:search' %}" method="get" class="form-group">
                                 {% bootstrap_form filter.form layout='vertical' size='small' show_label=False field_class='col' label_class='col col-form-label' %}
                                 <div class="col">
-                                    {% bootstrap_button '<span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search' button_class 'btn-primary btn-sm' %}
+                                    {% bootstrap_button '<span class="glyphicon glyphicon-search" aria-hidden="true"></span> Filter' button_class 'btn-primary btn-sm' %}
                                     {% bootstrap_button '<span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Clear' button_class='btn-dark btn-sm' button_type='link' href=home_url %}
                                 </div>
                             </form>

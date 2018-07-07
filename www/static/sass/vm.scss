@@ -63,7 +63,7 @@
    */
   
   [role="main"] {
-    padding-top: 45px; /* Space for fixed navbar */
+    padding-top: 70px; /* Space for fixed navbar */
   }
   
   /*
@@ -123,6 +123,13 @@
         color: darken($secondary, 20%);
     }
 
+    th.orderable.desc,
+    th.orderable.asc{
+      a{
+        color: $primary;
+      }
+    }
+
     td {
       vertical-align: bottom;
       padding-bottom: 20px;
@@ -156,7 +163,13 @@
     }
   }
 
-  #quicksearch:focus {
-    box-shadow: none;
-    background: #efefef;
+  #quicksearch {
+    &:focus{
+      box-shadow: none;
+      background: #efefef;
+    }
+    &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: #ddd;
+        opacity: 1; /* Firefox */
+    }  
   }
