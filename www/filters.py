@@ -7,6 +7,7 @@ from data.models import Record, Tag
 class RecordFilter(django_filters.FilterSet):
 
     tags = django_filters.ModelMultipleChoiceFilter(queryset=Tag.objects)
+    date = django_filters.IsoDateTimeFilter()
 
     class Meta:
         model = Record

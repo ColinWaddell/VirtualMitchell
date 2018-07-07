@@ -74,7 +74,7 @@ class RecordTable(tables.Table):
     class Meta:
         model = Record
         template_name = 'django_tables2/bootstrap4.html'
-        order_by = 'record_number'
+        order_by = 'date'
         attrs = {
             'class': 'table records'
         }
