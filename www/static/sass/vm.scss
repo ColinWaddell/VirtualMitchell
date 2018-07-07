@@ -71,10 +71,13 @@
    */
   
   .navbar-brand {
-    padding-top: .75rem;
-    padding-bottom: .75rem;
-    font-size: 1rem;
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+    font-size: 1.6rem;
+    font-weight: 300;
+    letter-spacing: 1px;
     background-color: rgba(0, 0, 0, .25);
+    color: $info !important;
   }
   
   .navbar .form-control {
