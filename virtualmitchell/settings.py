@@ -46,10 +46,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'crispy_forms',
     'bootstrap4',
     'django_tables2',
     'data.apps.DataConfig',
     'www.apps.WWWConfig',
+    'api.apps.APIConfig',
 ]
 
 MIDDLEWARE = [
@@ -110,6 +113,17 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+# Rest Framework
+# http://www.django-rest-framework.org/
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
@@ -140,3 +154,9 @@ else:
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "www/static"),
 ]
+
+# Bootstrap settings
+# https://django-bootstrap4.readthedocs.io/en/latest/settings.html
+BOOTSTRAP4 = {
+    'success_css_class': 'has-success',
+}

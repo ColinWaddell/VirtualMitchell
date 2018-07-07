@@ -6,19 +6,16 @@ from data.models import Record, Tag
 
 class RecordFilter(django_filters.FilterSet):
 
+    tags = django_filters.ModelMultipleChoiceFilter(queryset=Tag.objects)
+
     class Meta:
         model = Record
         fields = {
             "record_number": ["icontains"],
-            "date": ['lte', 'gte'],
             "area": ["exact"],
             "street": ["icontains"],
-            "number": ["icontains"],
-            "image_url": ["icontains"],
+            "date": ['lt', 'gt'],
             "description": ["icontains"],
             "caption": ["icontains"],
-            "tags": ['exact']
-        }
-        filter_overrides = {
-            models.DateField: {'filter_class': django_filters.DateFilter},
+            "tags": ["exact"]
         }

@@ -1,62 +1,55 @@
 {% load bootstrap4 %}
 {% load static %}
 {% url 'www:search' as search_url %}
+{% url 'www:index' as home_url %}
 
-<div class="pos-f-t">
-  <div class="collapse" id="filterToggleContent">
-    <!-- Search Area -->
-    <div class="bg-light p-4">
-        {% if filter %}
-            <h4>Search...</h4>
-            <form action="{%url 'www:search' %}" method="get" class="form-group">
-                {% bootstrap_form filter.form layout='horizontal' size='small' show_label=True label_class='col-md-3 col-form-label' %}
-                {% bootstrap_button '<span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search' button_class 'btn-primary' %}
-                {% bootstrap_button '<span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Clear Filters' button_class='btn-dark' button_type='link' href=parts_index_url %}
-            </form>
-            <hr />
-        {% endif %}
-    </div>
-  </div>
+    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Virtual Mitchell</a>
+        <input class="form-control form-control-dark w-100" type="text" id="quicksearch" placeholder="Search Tags..." aria-label="Search Tags...">
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+                <a class="nav-link" href="#">Virtual Mitchell</a>
+            </li>
+        </ul>
+    </nav>
 
-  <nav class="navbar navbar-dark bg-dark fixed-top">
-    <!-- Toggle Search -->
-    <a href="{% url 'www:index' %}" class="navbar-brand">
-	<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-    </a>
-    <a class="navbar-brand col-auto mr-auto" href="{% url 'www:index' %}">
-        Virtual Mitchell{% if title %}: {{ title }}{% endif %}
-    </a>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            {% if filter %}
+                            <h5 class="col">Filter:</h5>
+                            <form action="{%url 'www:search' %}" method="get" class="form-group">
+                                {% bootstrap_form filter.form layout='vertical' size='small' show_label=False field_class='col' label_class='col col-form-label' %}
+                                <div class="col">
+                                    {% bootstrap_button '<span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search' button_class 'btn-primary btn-sm' %}
+                                    {% bootstrap_button '<span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Clear' button_class='btn-dark btn-sm' button_type='link' href=home_url %}
+                                </div>
+                            </form>
+                            {% endif %}   
+                        </li>
+                    </ul>                   
+                </div>
+            </nav>
 
-    <ul class="nav col-auto mr-4">
-        <li class="nav-item">
-            {% url 'www:index' as index_url %}
-            <a class="nav-link{% if request.path == index_url %} active {% endif %}" href="{% url 'www:index' %}">
-                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> View NCRs
-            </a>
-        </li>
-    </ul>
+                <script>
+                    $(function() {
+                        $("#quicksearch").autocomplete({
+                            source: "/api/tags",
+                            minLength: 3,
+                            select: function( event, ui ) {
+                                window.location.href = "{% url 'www:search' %}?&tags=" + ui.item.id;
+                            },
+                        });
 
-    <!-- Toggle Search -->
-    {% if filter %}
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#filterToggleContent" aria-controls="filterToggleContent" aria-expanded="false" aria-label="Toggle Search" onclick="$('html, body').animate({scrollTop: 0}, 'slow'); return false;">
-            <span class="glyphicon glyphicon-search {% if request.path == search_url %} text-warning {% endif %}" aria-hidden="true"></span>
-        </button>
-    {% endif %}
-  </nav>
-</div>
-
-<div class="container-fluid" {% if not request.path == search_url %} hidden {% endif %}>
-    <div class="row">
-        <div class="col">
-            <h4>Search:
-                {% for item in filter.form %}
-                    {% if item.value %}
-                        &nbsp;<span class="badge badge-pill badge-secondary font-weight-light">{{ item.label }}</span>
-                    {% endif %}
-                {% endfor %}
-                &nbsp;<a href="{% url 'www:index' %}" class="font-weight-light">clear</a>
-            </h4>
-        </div>
-    </div>
-    <hr />
-</div>
+                        var dateoptions = {
+                            changeYear: true,
+                            yearRange: "1800:2018",
+                            dateFormat: "dd/mm/yy"
+                        };
+                        $( "#id_date__lt").datepicker(dateoptions);
+                        $( "#id_date__gt").datepicker(dateoptions);
+                    });
+                </script>
