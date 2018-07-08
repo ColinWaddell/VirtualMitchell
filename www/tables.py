@@ -12,6 +12,8 @@ class RecordTable(tables.Table):
                     href="http://www.mitchelllibrary.org/virtualmitchell/{{ record.image_url }}"
                     target="_blank"
                     class="record-thumbnail-img"
+                    data-lightbox="previews"
+                    data-title="{{ record.caption }} {% if record.description %}- {{ record.description }}{% endif %}"
                     style="
                         background: url(http://www.mitchelllibrary.org/virtualmitchell/{{ record.image_url }});
                         background-size: cover;

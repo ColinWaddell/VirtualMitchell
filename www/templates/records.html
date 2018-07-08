@@ -11,27 +11,26 @@
 
 <script>
 
-$(document).keyup(function(e) {
-    var KEY_LEFT = 37;
-    var KEY_RIGHT = 39;
-    var NEXT = $('li.next > a').length ? $('li.next > a')[0].href : null;
-    var PREV = $('li.previous > a').length ? $('li.previous > a')[0].href : null;
+// $(document).keyup(function(e) {
+//     var KEY_LEFT = 37;
+//     var KEY_RIGHT = 39;
+//     var NEXT = $('li.next > a').length ? $('li.next > a')[0].href : null;
+//     var PREV = $('li.previous > a').length ? $('li.previous > a')[0].href : null;
 
-    switch(e.keyCode){
-      case KEY_LEFT:
-        if (PREV){
-          window.location.href = PREV;
-        }
-        break;
+//     switch(e.keyCode){
+//       case KEY_LEFT:
+//         if (PREV){
+//           window.location.href = PREV;
+//         }
+//         break;
       
-      case KEY_RIGHT:
-        if(NEXT){
-          window.location.href = NEXT;
-        }
-        break;
-    }
-
-});
+//       case KEY_RIGHT:
+//         if(NEXT){
+//           window.location.href = NEXT;
+//         }
+//         break;
+//     }
+// });
 
 </script>
 
