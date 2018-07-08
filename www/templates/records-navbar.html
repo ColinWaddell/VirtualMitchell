@@ -3,14 +3,14 @@
 {% url 'www:search' as search_url %}
 {% url 'www:index' as home_url %}
 
-    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0">
+    <nav class="navbar navbar-dark fixed-top bg-dark navbar-expand-lg flex-md-nowrap p-0">
         <a class="navbar-brand col-sm-3 mr-0" href="{% url 'www:index' %}">Virtual Mitchell</a>
         <input class="form-control form-control-dark" type="text" id="quicksearch" placeholder="Search Tags..." aria-label="Search Tags...">
-        <!-- <ul class="navbar-nav px-3">
+        <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
-                <a class="nav-link" href="#">Virtual Mitchell</a>
+                <label for="quicksearch"><span class="glyphicon glyphicon-search text-white" aria-hidden="true"></span></label>
             </li>
-        </ul> -->
+        </ul>
     </nav>
 
     <div class="container-fluid">
