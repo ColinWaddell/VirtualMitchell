@@ -11,27 +11,13 @@
 
 <script>
 
-// $(document).keyup(function(e) {
-//     var KEY_LEFT = 37;
-//     var KEY_RIGHT = 39;
-//     var NEXT = $('li.next > a').length ? $('li.next > a')[0].href : null;
-//     var PREV = $('li.previous > a').length ? $('li.previous > a')[0].href : null;
-
-//     switch(e.keyCode){
-//       case KEY_LEFT:
-//         if (PREV){
-//           window.location.href = PREV;
-//         }
-//         break;
-      
-//       case KEY_RIGHT:
-//         if(NEXT){
-//           window.location.href = NEXT;
-//         }
-//         break;
-//     }
-// });
-
+$("#quicksearch").focus(function(e){
+    $(".sidebar-sticky").fadeOut(500);
+    $(".sidebar-search-message").fadeIn(1000);
+}).focusout(function(e){
+    $(".sidebar-sticky").fadeIn(500);
+    $(".sidebar-search-message").fadeOut(100);
+})
 </script>
 
 {% include 'records-footer.html' %}

@@ -129,7 +129,7 @@
   .ui-state-focus,
   .ui-widget-content .ui-state-active,
   .ui-state-active{
-    background: $pink !important;
+    background: lighten($pink, 20%) !important;
     border: 0 !important;
   }
 
@@ -199,7 +199,8 @@
   #quicksearch {
     &:focus{
       box-shadow: none;
-      background: #efefef;
+      color: #fff;
+      background: $pink;
     }
     &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
         color: #ddd;
