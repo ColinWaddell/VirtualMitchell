@@ -35,7 +35,7 @@
                             {% endif %}   
                         </li>
                         <li class="nav-item border-top">
-                            <div class="col small">
+                            <div class="col small site-details">
                                 <p>Site built by <a href="http://colinwaddell.com" target="_blank">Colin Waddell</a></p>
                                 <p>All content belongs to Glasgow City Council's <a href="http://www.mitchelllibrary.org/virtualmitchell/" target="_blank">Virtual Mitchell</a></p>
                             </div>
@@ -64,7 +64,7 @@
                         };
                         $( "#id_date__lt").datepicker(dateoptions);
                         $( "#id_date__gt").datepicker(dateoptions);
-                        
+
                         /* Kludge for django-filters */
                         $('#id_tags').attr('size', 10)
                     });;
