@@ -14,6 +14,7 @@ class RecordFilter(django_filters.FilterSet):
         model = Record
         fields = {
             "tags": ["exact"],
+            "street": ["icontains"],
             "date": ['lt', 'gt'],
             "description": ["icontains"],
             "caption": ["icontains"],

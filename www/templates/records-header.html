@@ -7,6 +7,7 @@
 <html>
     <head>
         <title>Virtual Mitchell{% if title %}: {{ title }}{% endif %}</title>
+        <meta charset="utf-8">
         <link href="{% static 'css/vm.css' %}" rel="stylesheet" type="text/css">
         <link href="{% static 'css/jquery-ui.min.css' %}" rel="stylesheet" type="text/css">
         <script src="{% static 'js/vm.js' %}"></script>
@@ -14,14 +15,27 @@
         <link href="{% static 'css/lightbox.css' %}" rel="stylesheet">
         <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" />
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-117975660-2"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'UA-117975660-2');
-    </script>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-117975660-2"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'UA-117975660-2');
+        </script>
+
+        <!-- Search Engine -->
+        <meta name="description" content="Researching your family history? Fancy a trip down memory lane? This site will bring Glasgow's past to life for you.">
+        <meta name="image" content="{% static 'img/siteimage.png' %}">
+        <!-- Schema.org for Google -->
+        <meta itemprop="name" content="Virtual Mitchell">
+        <meta itemprop="description" content="Researching your family history? Fancy a trip down memory lane? This site will bring Glasgow's past to life for you.">
+        <meta itemprop="image" content="{% static 'img/siteimage.png' %}">
+        <!-- Open Graph general (Facebook, Pinterest & Google+) -->
+        <meta name="og:title" content="Virtual Mitchell">
+        <meta name="og:description" content="Researching your family history? Fancy a trip down memory lane? This site will bring Glasgow's past to life for you.">
+        <meta name="og:image" content="{% static 'img/siteimage.png' %}">
+        <meta name="og:type" content="website">
 
     </head>
     <body>
