@@ -4,15 +4,18 @@
 {% url 'www:index' as home_url %}
 
     <nav class="navbar navbar-dark fixed-top bg-dark navbar-expand-lg flex-md-nowrap p-0">
-        <input class="col-sm-8 col-md-3 form-control form-control-dark" type="text" id="quicksearch" placeholder="Search..." aria-label="Search...">
-        <a class="navbar-brand col-sm-4 col-md-9" href="{% url 'www:index' %}">Virtual Mitchell</a>
+        <input class="col-10 col-md-3 form-control form-control-dark" type="text" id="quicksearch" placeholder="Search..." aria-label="Search...">
+        <a class="navbar-brand col-2 col-md-9" href="{% url 'www:index' %}">
+            <span class="d-md-inline d-none">Virtual Mitchell</span>
+            <span class="d-md-none">VM</span>
+        </a>
     </nav>
 
     <div class="container-fluid">
         <div class="row">
-            <nav class="col-md-3 bg-light sidebar">
+            <nav class="col-md-3 bg-light sidebar navbar-expand-md">
                 <div class="sidebar-sticky">
-                    <ul class="nav flex-column">
+                    <ul class="nav flex-column collapse navbar-collapse" id="filterToggle">
                         <li class="nav-item">
                           <h5 class="col">Additional Filters:</h5>
                           <hr>
@@ -34,7 +37,10 @@
                                     <p>All content belongs to Glasgow City Council's <a href="http://www.mitchelllibrary.org/virtualmitchell/" target="_blank">Virtual Mitchell</a></p>
                                 </div>
                         </li>
-                    </ul>                   
+                    </ul>
+                    <button type="button" class="btn btn-dark navbar-toggler" data-toggle="collapse" data-target="#filterToggle" aria-controls="filterToggle" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="glyphicon glyphicon-tasks"></span>
+                    </button>              
                 </div>
             </nav>
 

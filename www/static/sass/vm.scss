@@ -69,12 +69,21 @@
   
   [role="main"] {
     padding-top: 70px; /* Space for fixed navbar */
+    @include media-breakpoint-down(md) { 
+      padding-top: 20px;
+    }
   }
   
   /*
    * Navbar
    */
   
+  .nav {
+    @include media-breakpoint-down(md) { 
+      display: block;
+    }
+  }
+
   .navbar-brand {
     padding-top: .25rem;
     padding-bottom: .25rem;
@@ -91,7 +100,16 @@
     border-width: 0;
     border-radius: 0;
   }
+
+  .navbar-collapse {
+    align-items: inherit;
+  }
   
+  .navbar-toggler {
+    background: $dark;
+    margin: 0 0 10px 10px;
+  }
+
   .nav-item {
     label{
       padding-top: 10px;
