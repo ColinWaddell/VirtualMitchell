@@ -12,6 +12,7 @@ www/migrations/
 data/migrations/
 data/static/css/
 static/
+*.ai
 
 # C extensions
 *.so

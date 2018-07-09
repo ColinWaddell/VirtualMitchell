@@ -13,8 +13,24 @@ JSONPATTERN = '/*.json'
 class Command(BaseCommand):
     help = 'Import json files from folder'
 
+    def _tag_cleanup(self, tag):
+        cleantag = re.sub(r"(\ Dr)$", " Drive", tag)
+        cleantag = re.sub(r"(\ Pl)$", " Place", cleantag)
+        cleantag = re.sub(r"(\ St)$", " Street", cleantag)
+        cleantag = re.sub(r"(\ Terr)$", " Terrace", cleantag)
+        cleantag = re.sub(r"(\ Rd)$", " Road", cleantag)
+        cleantag = re.sub(r"(\ Gdns)$", " Gardens", cleantag)
+        cleantag = re.sub(r"(\ Ave)$", " Avenue", cleantag)
+        cleantag = re.sub(r"(\ Cres)$", " Cresent", cleantag)
+        cleantag = re.sub(r"(\ La)$", " Lane", cleantag)
+        cleantag = re.sub(r"(\ Sq)$", " Square", cleantag)
+        cleantag = re.sub(r"(\ Ct)$", " Court", cleantag)
+        cleantag = re.sub(r"(\ Pl\ 3)$", " Place", cleantag)
+        
+        return cleantag
+
     def _date_cleanup(self, date_raw):
-        tidy_date = re.sub("n\.d\. \?c\.|n\.d\. c\.|c\.", "", date_raw)
+        tidy_date = re.sub(r"n\.d\. \?c\.|n\.d\. c\.|c\.", "", date_raw)
         dates = search_dates(tidy_date, settings={'PREFER_DATES_FROM': 'past'})
         if isinstance(dates, Iterable):
             ordered = sorted(dates, key=lambda date: date[1])
@@ -72,7 +88,7 @@ class Command(BaseCommand):
 
                 if details['tags'] is not None:
                     for tag_title in details['tags']:
-
+                        tag_title = self._tag_cleanup(tag_title)
                         try:
                             tag = Tag.objects.get(title=tag_title)
                         except Tag.DoesNotExist:

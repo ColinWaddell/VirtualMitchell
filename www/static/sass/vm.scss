@@ -16,17 +16,22 @@
     left: 0;
     z-index: 100; /* Behind the navbar */
     padding: 65px 0 0; /* Height of navbar */
+    @include media-breakpoint-down(md) { 
+      position: inherit;
+    }
   }
   
-  .sidebar-sticky {
-    position: relative;
-    top: 0;
-    height: calc(100vh - 48px);
-    padding-top: .5rem;
-    overflow-x: hidden;
-    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+  @include media-breakpoint-up(md) {
+    .sidebar-sticky {
+      position: relative;
+      top: 0;
+      height: calc(100vh - 48px);
+      padding-top: .5rem;
+      overflow-x: hidden;
+      overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    }
   }
-  
+
   @supports ((position: -webkit-sticky) or (position: sticky)) {
     .sidebar-sticky {
       position: -webkit-sticky;
@@ -73,6 +78,7 @@
   .navbar-brand {
     padding-top: .25rem;
     padding-bottom: .25rem;
+    margin-right: 0;
     font-size: 1.6rem;
     font-weight: 300;
     letter-spacing: 1px;

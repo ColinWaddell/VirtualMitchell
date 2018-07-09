@@ -161,3 +161,7 @@ STATICFILES_DIRS = [
 BOOTSTRAP4 = {
     'success_css_class': 'has-success',
 }
+
+# Django Tables
+# https://django-tables2.readthedocs.io/en/latest/index.html
+DJANGO_TABLES2_PAGE_RANGE = 7
