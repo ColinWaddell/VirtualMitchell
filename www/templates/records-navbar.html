@@ -35,10 +35,10 @@
                             {% endif %}   
                         </li>
                         <li class="nav-item border-top">
-                                <div class="col small">
-                                    <p>Site built by <a href="http://colinwaddell.com" target="_blank">Colin Waddell</a></p>
-                                    <p>All content belongs to Glasgow City Council's <a href="http://www.mitchelllibrary.org/virtualmitchell/" target="_blank">Virtual Mitchell</a></p>
-                                </div>
+                            <div class="col small">
+                                <p>Site built by <a href="http://colinwaddell.com" target="_blank">Colin Waddell</a></p>
+                                <p>All content belongs to Glasgow City Council's <a href="http://www.mitchelllibrary.org/virtualmitchell/" target="_blank">Virtual Mitchell</a></p>
+                            </div>
                         </li>
                     </ul>
                     <button type="button" class="btn btn-dark navbar-toggler" data-toggle="collapse" data-target="#filterToggle" aria-controls="filterToggle" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,5 +64,8 @@
                         };
                         $( "#id_date__lt").datepicker(dateoptions);
                         $( "#id_date__gt").datepicker(dateoptions);
-                    });
+                        
+                        /* Kludge for django-filters */
+                        $('#id_tags').attr('size', 10)
+                    });;
                 </script>

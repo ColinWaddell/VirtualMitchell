@@ -18,9 +18,7 @@ class RecordTable(tables.Table):
                         background: url(http://www.mitchelllibrary.org/virtualmitchell/{{ record.image_url }});
                         background-size: cover;
                     "
-                >
-                    &nbsp; 
-                </a>
+                ></a>
                 {% if record.caption %}
                     <a href="http://www.mitchelllibrary.org/virtualmitchell/{{ record.image_url }}" class="image-caption">{{ record.caption }}</a>
                 {% endif %}
