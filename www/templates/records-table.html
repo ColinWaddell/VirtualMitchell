@@ -125,3 +125,8 @@
 
 <br>
 
+{% if not table.page.has_next %}
+<div class="col text-center">
+    <p class="small"><em>End of results</em></p>
+</div>
+{% endif %}
