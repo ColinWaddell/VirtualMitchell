@@ -15,22 +15,12 @@ class RecordFilter(django_filters.FilterSet):
         queryset=Tag.objects
     )
 
-    date__year__lt = django_filters.ChoiceFilter(
-        choices=STATUS_CHOICES,
-        empty_label="Before the year..."
-    )
-
-    date__year__gt = django_filters.ChoiceFilter(
-        choices=STATUS_CHOICES,
-        empty_label="After the year..."
-    )
-
     class Meta:
         model = Record
         fields = {
             "tags": ["exact"],
             "street": ["icontains"],
-            "date": ['year__lt', 'year__gt'],
+            "date": ["year__lt", "year__gt"],
             "description": ["icontains"],
             "caption": ["icontains"],
         }
