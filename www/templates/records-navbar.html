@@ -25,7 +25,7 @@
                         </li>
                         <li class="nav-item">
                             {% if filter %}
-                            <form action="{%url 'www:search' %}" method="get" class="form-group">
+                            <form action="{%url 'www:search' %}" method="get" class="form-group" id="searchform">
                                 {% bootstrap_form filter.form layout='vertical' size='small' show_label=False field_class='col' label_class='col col-form-label' %}
                                 <div class="col text-center">
                                     {% bootstrap_button '<span class="glyphicon glyphicon-search" aria-hidden="true"></span> Filter' button_class 'btn-primary btn-sm' %}
@@ -57,13 +57,23 @@
                             },
                         });
 
-                        var dateoptions = {
-                            changeYear: true,
-                            yearRange: "1749:2018",
-                            dateFormat: "yy-mm-dd"
-                        };
-                        $( "#id_date__lt").datepicker(dateoptions);
-                        $( "#id_date__gt").datepicker(dateoptions);
+                        /* tidy up url on search */
+                        $('#searchform').submit(function () {
+                            $(this)
+                                .find('input[name]')
+                                .filter(function () {
+                                    return !this.value;
+                                })
+                                .prop('name', '');
+                        });
+
+                        // var dateoptions = {
+                        //     changeYear: true,
+                        //     yearRange: "1749:2018",
+                        //     dateFormat: "yy-mm-dd"
+                        // };
+                        // $( "#id_date__lt").datepicker(dateoptions);
+                        // $( "#id_date__gt").datepicker(dateoptions);
 
                         /* Kludge for django-filters */
                         $('#id_tags').attr('size', 10)
