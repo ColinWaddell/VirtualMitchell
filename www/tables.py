@@ -13,7 +13,7 @@ class RecordTable(tables.Table):
                     target="_blank"
                     class="record-thumbnail-img"
                     data-lightbox="previews"
-                    data-title="{{ record.caption }} {% if record.description %}- {{ record.description }}{% endif %}"
+                    data-title="{{ record.caption }} {% if record.description %}- {{ record.description }}{% endif %} {% if record.date_raw %}- {{ record.date_raw }}{% endif %}"
                     style="
                         background: url(http://www.mitchelllibrary.org/virtualmitchell/{{ record.image_url }});
                         background-size: cover;
