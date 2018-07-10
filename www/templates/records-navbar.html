@@ -49,6 +49,7 @@
 
                 <script>
                     $(function() {
+                        /* Autocomplete */
                         $("#quicksearch").autocomplete({
                             source: "/api/tags",
                             minLength: 3,
@@ -57,7 +58,7 @@
                             },
                         });
 
-                        /* tidy up url on search */
+                        /* Tidy up url on search */
                         $('#searchform').submit(function () {
                             $(this)
                                 .find('input[name]')
@@ -66,14 +67,6 @@
                                 })
                                 .prop('name', '');
                         });
-
-                        // var dateoptions = {
-                        //     changeYear: true,
-                        //     yearRange: "1749:2018",
-                        //     dateFormat: "yy-mm-dd"
-                        // };
-                        // $( "#id_date__lt").datepicker(dateoptions);
-                        // $( "#id_date__gt").datepicker(dateoptions);
 
                         /* Kludge for django-filters */
                         $('#id_tags').attr('size', 10)
