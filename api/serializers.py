@@ -22,7 +22,6 @@ class TagSerializer(serializers.HyperlinkedModelSerializer):
         model = Tag
         read_only = True
         fields = (
-            'id',
             'label',
             'value'
         )

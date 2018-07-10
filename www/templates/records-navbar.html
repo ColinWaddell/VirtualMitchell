@@ -54,7 +54,7 @@
                             source: "/api/tags",
                             minLength: 3,
                             select: function( event, ui ) {
-                                window.location.href = "{% url 'www:search' %}?&tags=" + ui.item.id;
+                                window.location.href = "{% url 'www:search' %}?&tags=" + ui.item.label;
                             },
                         });
 
@@ -70,5 +70,9 @@
 
                         /* Kludge for django-filters */
                         $('#id_tags').attr('size', 10)
+                        $('#id_date__year__lt').attr('step', 10)
+                        $('#id_date__year__lt').attr('min', 1770)
+                        $('#id_date__year__lt').attr('max', 2000)
+
                     });;
                 </script>
