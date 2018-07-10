@@ -13,6 +13,7 @@ data/migrations/
 data/static/css/
 static/
 *.ai
+*.swp
 
 # C extensions
 *.so
