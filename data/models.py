@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Tag(models.Model):
-    title = models.TextField(primary_key=True)
+    title = models.CharField(max_length=50, primary_key=True)
 
     class Meta:
         ordering = ['title']
