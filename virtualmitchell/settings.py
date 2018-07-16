@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'bootstrap4',
     'leaflet',
-    'djgeojson',
+    'jsonfield',
     'django_tables2',
     'data.apps.DataConfig',
     'www.apps.WWWConfig',

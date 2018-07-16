@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Record, Tag
+from .models import Record, Tag, Location
 
 
 class RecordAdmin(admin.ModelAdmin):
@@ -13,3 +13,4 @@ class RecordAdmin(admin.ModelAdmin):
 
 admin.site.register(Record, RecordAdmin)
 admin.site.register(Tag)
+admin.site.register(Location)

@@ -9,6 +9,12 @@ class Location(models.Model):
     bbox = GeometryField()
     geom = GeoJSONField(null=True, blank=True)
 
+    def __str__(self):
+        return "%f, %f" % (
+            self.lat,
+            self.lon
+        )
+
 
 class Tag(models.Model):
     title = models.CharField(max_length=50, primary_key=True)
