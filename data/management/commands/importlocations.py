@@ -37,16 +37,21 @@ class Command(BaseCommand):
                 ), end="")
                 details = json.load(f)[0]
 
-                location = Location(
-                    place_id=int(details["place_id"]),
-                    lat=float(details["lat"]),
-                    lon=float(details["lon"]),
-                    osm_id=int(details["osm_id"]),
-                    bbox=details["boundingbox"],
-                    geom=details["geojson"] if "geojson" in details else None,
-                )
-                location.save()
-                print("saved ", end="")
+                try:
+                    location = Location.objects.get(place_id=int(details["place_id"]))
+                    print("loaded ", end="")
+                
+                except Location.DoesNotExist:
+                    location = Location(
+                        place_id=int(details["place_id"]),
+                        lat=float(details["lat"]),
+                        lon=float(details["lon"]),
+                        osm_id=int(details["osm_id"]),
+                        bbox=details["boundingbox"],
+                        geom=details["geojson"] if "geojson" in details else None,
+                    )
+                    location.save()
+                    print("saved ", end="")
 
                 # Synching with record
                 try:
