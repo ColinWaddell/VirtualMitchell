@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'crispy_forms',
     'bootstrap4',
+    'leaflet',
+    'djgeojson',
     'django_tables2',
     'data.apps.DataConfig',
     'www.apps.WWWConfig',
