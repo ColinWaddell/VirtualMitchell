@@ -7,18 +7,7 @@
 {% include 'records-navbar.html' with search_url='www:map' %}
 
     <script type="text/javascript">
-        function onEachFeature(feature, layer) {
-            var popupContent = "";
-
-            if (feature.properties && feature.properties.popupContent) {
-                popupContent += feature.properties.popupContent;
-            }
-
-            layer.bindPopup(popupContent);
-        }
-
-        function map_init_basic (map, options) {
-            var freeBus = [
+        var locations = [
             {% for obj in filter.qs %}
                 {% if obj.geom %}
                 {
@@ -30,33 +19,21 @@
                 },
                 {% endif %}
             {% endfor %}
-            ];
-            L.geoJSON(freeBus, {onEachFeature: onEachFeature}).addTo(map);
-        }
+        ];
     </script>
 
     <main role="main" class="col-md-9 ml-sm-auto">
-            <div id="map">
-                    
-                  </div>
-<hr>
-        {% leaflet_map "yourmap" callback="window.map_init_basic" %}
-        {% if filter.data %}
-            {% render_table table 'records-table.html' %}
-        {% endif %}
+            <div id="map"></div>
     </main>
 
 <script>
-
-$("#quicksearch").focus(function(e){
-    $(".sidebar-sticky").fadeOut(500);
-    $(".sidebar-search-message").fadeIn(1000);
-}).focusout(function(e){
-    $(".sidebar-sticky").fadeIn(500);
-    $(".sidebar-search-message").fadeOut(100);
-});
-
-new Vue({ el: '#components-demo' });
+    $("#quicksearch").focus(function(e){
+        $(".sidebar-sticky").fadeOut(500);
+        $(".sidebar-search-message").fadeIn(1000);
+    }).focusout(function(e){
+        $(".sidebar-sticky").fadeIn(500);
+        $(".sidebar-search-message").fadeOut(100);
+    });
 </script>
 
 <style>

@@ -7,7 +7,7 @@ module.exports = function (grunt) {
             },
 
             vue: {
-                files: ['www/static/src/**/*.vue'],
+                files: ['www/static/src/**/*.{vue,js}', ],
                 tasks: ['browserify']
             }
         },
@@ -84,7 +84,7 @@ module.exports = function (grunt) {
                     debug: false
                 },
                 transform: [
-                    ['vueify']
+                    ["vueify", ]
                 ]
             }
         }
