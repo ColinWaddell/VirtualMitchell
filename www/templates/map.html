@@ -36,6 +36,10 @@
     </script>
 
     <main role="main" class="col-md-9 ml-sm-auto">
+            <div id="map">
+                    
+                  </div>
+<hr>
         {% leaflet_map "yourmap" callback="window.map_init_basic" %}
         {% if filter.data %}
             {% render_table table 'records-table.html' %}
@@ -50,7 +54,9 @@ $("#quicksearch").focus(function(e){
 }).focusout(function(e){
     $(".sidebar-sticky").fadeIn(500);
     $(".sidebar-search-message").fadeOut(100);
-})
+});
+
+new Vue({ el: '#components-demo' });
 </script>
 
 <style>
@@ -59,5 +65,7 @@ $("#quicksearch").focus(function(e){
     height: 600px;
 }
 </style>
+
+<script src="{% static 'js/map.min.js' %}"></script>
 
 {% include 'records-footer.html' %}

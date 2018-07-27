@@ -1,8 +1,15 @@
 module.exports = function (grunt) {
     grunt.initConfig({
         watch: {
-            files: ['www/static/sass/**/*.{scss,sass}'],
-            tasks: ['sass']
+            sass: {
+                files: ['www/static/sass/**/*.{scss,sass}'],
+                tasks: ['sass']
+            },
+
+            vue: {
+                files: ['www/static/src/**/*.vue'],
+                tasks: ['browserify']
+            }
         },
 
         sass: {
@@ -65,6 +72,21 @@ module.exports = function (grunt) {
                   async: true
                 }
             }
+        },
+
+        browserify: {
+            bundle: {
+                src: 'www/static/src/index.js',
+                dest: 'www/static/js/map.min.js'
+            },
+            options: {
+                browserifyOptions: {
+                    debug: false
+                },
+                transform: [
+                    ['vueify']
+                ]
+            }
         }
     });
 
@@ -74,6 +96,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-browser-sync');
     grunt.loadNpmTasks('grunt-shell-spawn');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-browserify');
 
     // define default task
     grunt.registerTask('default', ['shell:djangoRun', 'browserSync', 'watch']);
