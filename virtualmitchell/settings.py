@@ -123,7 +123,8 @@ REST_FRAMEWORK = {
     # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+    ],
+    'PAGE_SIZE': 100
 }
 
 # Internationalization
@@ -162,6 +163,15 @@ STATICFILES_DIRS = [
 # https://django-bootstrap4.readthedocs.io/en/latest/settings.html
 BOOTSTRAP4 = {
     'success_css_class': 'has-success',
+}
+
+# Leaflet Config
+# https://django-leaflet.readthedocs.io/en/latest/templates.html
+LEAFLET_CONFIG = {
+    'DEFAULT_CENTER': (55.8642, -4.25),
+    'DEFAULT_ZOOM': 12,
+    'MIN_ZOOM': 3,
+    'MAX_ZOOM': 18,
 }
 
 # Django Tables

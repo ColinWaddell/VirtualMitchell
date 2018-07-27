@@ -1,9 +1,24 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
+from django_filters import rest_framework as filters
 from rest_framework.response import Response
 from rest_framework.exceptions import NotFound
-from .serializers import RecordSerializer, TagSerializer
-from data.models import Record, Tag
+from django_filters.views import FilterView
+from .serializers import RecordSerializer, TagSerializer, LocationSerializer
+from .filters import LocationFilter
+from data.models import Record, Tag, Location
+
+
+class LocationViewSet(viewsets.ModelViewSet):
+    queryset = Location.objects.all()
+    serializer_class = LocationSerializer
+    filter_backends = (filters.DjangoFilterBackend,)
+    filterset_fields = ('place_id', )
+
+
+class RecordViewSet(viewsets.ModelViewSet):
+    queryset = Record.objects.all()
+    serializer_class = RecordSerializer
 
 
 class TagViewSet(viewsets.ModelViewSet):

@@ -5,7 +5,7 @@
 
     <nav class="navbar navbar-dark fixed-top bg-dark navbar-expand-lg flex-md-nowrap p-0">
         <input class="col-10 col-md-3 form-control form-control-dark" type="text" id="quicksearch" placeholder="Search..." aria-label="Search...">
-        <a class="navbar-brand col-2 col-md-9" href="{% url 'www:index' %}">
+        <a class="navbar-brand col-2 col-md-9" href="">
             <span class="d-md-inline d-none">Virtual Mitchell</span>
             <span class="d-md-none">VM</span>
         </a>
@@ -25,7 +25,7 @@
                         </li>
                         <li class="nav-item">
                             {% if filter %}
-                            <form action="{%url 'www:search' %}" method="get" class="form-group" id="searchform">
+                            <form action="" method="get" class="form-group" id="searchform">
                                 {% bootstrap_form filter.form layout='vertical' size='small' show_label=False field_class='col' label_class='col col-form-label' %}
                                 <div class="col text-center">
                                     {% bootstrap_button '<span class="glyphicon glyphicon-search" aria-hidden="true"></span> Filter' button_class 'btn-primary btn-sm' %}

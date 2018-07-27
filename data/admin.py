@@ -2,8 +2,9 @@ from django.contrib import admin
 from .models import Record, Tag, Location
 
 
-class RecordInline(admin.TabularInline):
-    model = Record
+# class RecordInline(admin.TabularInline):
+#     model = Record
+#     extra = 0
 
 
 class LocationAdmin(admin.ModelAdmin):
@@ -14,9 +15,9 @@ class LocationAdmin(admin.ModelAdmin):
         'lat',
         'lon'
     )
-    inlines = [
-        RecordInline,
-    ]
+    # inlines = [
+    #     RecordInline,
+    # ]
 
 
 class RecordAdmin(admin.ModelAdmin):

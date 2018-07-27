@@ -1,7 +1,7 @@
 from django.urls import reverse
 import django_tables2 as tables
 from django_tables2.utils import A  # alias for Accessor
-from data.models import Record
+from data.models import Record, Location
 
 
 class RecordTable(tables.Table):
@@ -86,3 +86,10 @@ class RecordTable(tables.Table):
             "date",
             "tags",
         )
+
+
+class LocationTable(tables.Table):
+
+    class Meta:
+        model = Location
+        template_name = 'django_tables2/bootstrap4.html'

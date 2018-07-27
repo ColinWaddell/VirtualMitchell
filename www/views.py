@@ -3,9 +3,9 @@ from django_tables2 import RequestConfig
 from django.urls import reverse_lazy
 from django.views import View
 from django.db.models import Max
-from data.models import Record
-from .tables import RecordTable
-from .filters import RecordFilter
+from data.models import Record, Location
+from .tables import RecordTable, LocationTable
+from .filters import RecordFilter, LocationFilter
 
 from extra_views.advanced import CreateWithInlinesView, UpdateWithInlinesView, InlineFormSet
 from extra_views.generic import GenericInlineFormSet
@@ -21,3 +21,9 @@ class RecordsView(SingleTableMixin, FilterView):
     template_name = 'records.html'
     paginate_by = 25
     filterset_class = RecordFilter
+
+
+class MapView(SingleTableMixin, FilterView):
+    model = Location
+    template_name = 'map.html'
+    filterset_class = LocationFilter

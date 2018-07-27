@@ -1,7 +1,7 @@
 from django import forms
 from django.db import models
 import django_filters
-from data.models import Record, Tag
+from data.models import Record, Tag, Location
 
 STATUS_CHOICES = [
     (year, year)
@@ -23,4 +23,18 @@ class RecordFilter(django_filters.FilterSet):
             "date": ["year__lt", "year__gt"],
             "description": ["icontains"],
             "caption": ["icontains"],
+        }
+
+
+class LocationFilter(django_filters.FilterSet):
+
+    class Meta:
+        model = Location
+        fields = {
+            "place_id": ["exact", ],
+            "records__tags": ["exact"],
+            "records__street": ["icontains"],
+            "records__date": ["year__lt", "year__gt"],
+            "records__description": ["icontains"],
+            "records__caption": ["icontains"],
         }

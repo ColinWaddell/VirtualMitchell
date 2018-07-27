@@ -1,20 +1,6 @@
 from django.db import models
 from djgeojson.fields import GeoJSONField, GeometryField
 
-class Location(models.Model):
-    place_id = models.IntegerField(primary_key=True)
-    osm_id = models.IntegerField()
-    lat = models.FloatField()
-    lon = models.FloatField()
-    bbox = GeometryField()
-    geom = GeoJSONField(null=True, blank=True)
-
-    def __str__(self):
-        return "%f, %f" % (
-            self.lat,
-            self.lon
-        )
-
 
 class Tag(models.Model):
     title = models.CharField(max_length=50, primary_key=True)
@@ -37,7 +23,6 @@ class Record(models.Model):
     description = models.TextField(null=True, blank=True)
     caption = models.TextField(null=True, blank=True)
     tags = models.ManyToManyField(Tag)
-    location = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True, blank=True, default=None)
 
     @property
     def all_tags(self):
@@ -45,3 +30,20 @@ class Record(models.Model):
 
     def __str__(self):
         return self.record_number
+
+
+class Location(models.Model):
+    place_id = models.IntegerField(primary_key=True)
+    osm_id = models.IntegerField()
+    lat = models.FloatField()
+    lon = models.FloatField()
+    bbox = GeometryField()
+    geom = GeoJSONField(null=True, blank=True)
+    records = models.ManyToManyField(Record)
+
+    def __str__(self):
+        return str(self.place_id)
+
+    @property
+    def record_count(self):
+        return self.records.count()

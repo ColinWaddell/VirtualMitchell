@@ -56,8 +56,8 @@ class Command(BaseCommand):
                 # Synching with record
                 try:
                     record = Record.objects.get(record_number=record_id)
-                    record.location = location
-                    record.save()
+                    location.records.add(record)
+                    location.save()
                     print("linked ", end="")
 
                 except Record.DoesNotExist:

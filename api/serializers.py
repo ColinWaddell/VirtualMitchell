@@ -1,8 +1,21 @@
-from data.models import Record, Tag
+from data.models import Record, Tag, Location
 from rest_framework import serializers
 
+class LocationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Location
+        read_only = True
+        fields = (
+            'place_id',
+            'lat',
+            'lon',
+            'bbox',
+            'geom',
+            'record_count'
+        )
 
-class RecordSerializer(serializers.HyperlinkedModelSerializer):
+
+class RecordSerializer(serializers.ModelSerializer):
     class Meta:
         model = Record
         read_only = True
@@ -11,6 +24,7 @@ class RecordSerializer(serializers.HyperlinkedModelSerializer):
             'date',
             'area',
             'street',
+            'location'
         )
 
 class TagSerializer(serializers.HyperlinkedModelSerializer):

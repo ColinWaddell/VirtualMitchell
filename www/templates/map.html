@@ -1,0 +1,63 @@
+{% load render_table from django_tables2 %}
+{% load bootstrap4 %}
+{% load leaflet_tags %}
+{% load static %}
+
+{% include 'map-header.html' with title="Browse Records" %}
+{% include 'records-navbar.html' with search_url='www:map' %}
+
+    <script type="text/javascript">
+        function onEachFeature(feature, layer) {
+            var popupContent = "";
+
+            if (feature.properties && feature.properties.popupContent) {
+                popupContent += feature.properties.popupContent;
+            }
+
+            layer.bindPopup(popupContent);
+        }
+
+        function map_init_basic (map, options) {
+            var freeBus = [
+            {% for obj in filter.qs %}
+                {% if obj.geom %}
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "popupContent": "{{obj.place_id}} {{ obj.record_count }} Items"
+                    },
+                    "geometry": {{ obj.geom|safe }}
+                },
+                {% endif %}
+            {% endfor %}
+            ];
+            L.geoJSON(freeBus, {onEachFeature: onEachFeature}).addTo(map);
+        }
+    </script>
+
+    <main role="main" class="col-md-9 ml-sm-auto">
+        {% leaflet_map "yourmap" callback="window.map_init_basic" %}
+        {% if filter.data %}
+            {% render_table table 'records-table.html' %}
+        {% endif %}
+    </main>
+
+<script>
+
+$("#quicksearch").focus(function(e){
+    $(".sidebar-sticky").fadeOut(500);
+    $(".sidebar-search-message").fadeIn(1000);
+}).focusout(function(e){
+    $(".sidebar-sticky").fadeIn(500);
+    $(".sidebar-search-message").fadeOut(100);
+})
+</script>
+
+<style>
+.leaflet-container {  /* all maps */
+    width:  100%;
+    height: 600px;
+}
+</style>
+
+{% include 'records-footer.html' %}
