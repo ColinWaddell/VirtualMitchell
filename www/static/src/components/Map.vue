@@ -107,7 +107,7 @@
         },
 
         mounted() {
-            window.setInterval(() => {
+            window.setTimeout(() => {
                 this.resize_to_fit()
             }, 300);
         },
