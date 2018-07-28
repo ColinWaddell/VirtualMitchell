@@ -8,7 +8,7 @@
         </l-map>
     </div>
     <div v-if="records">
-        <h4>{{ records.length }} Records:</h4>
+        <h4>{{ records.length }} Record<span v-if="records.length > 1">s</span>:</h4>
         <table class="table records">
             <thead class="thead-default">
                 <tr>
