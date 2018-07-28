@@ -36,7 +36,7 @@ class Record(models.Model):
 class Location(models.Model):
     place_id = models.IntegerField(primary_key=True)
     display_name = models.TextField(default="", blank=True, null=True)
-    osm_id = models.IntegerField()
+    osm_id = models.BigIntegerField()
     lat = models.FloatField()
     lon = models.FloatField()
     bbox = GeometryField()
