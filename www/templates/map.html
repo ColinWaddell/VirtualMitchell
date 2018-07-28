@@ -13,7 +13,8 @@
                 {
                     "type": "Feature",
                     "properties": {
-                        "record_request_url": "{{ obj.record_request_url }}"
+                        "record_request_url": "{{ obj.record_request_url }}",
+                        "display_name": "{{ obj.display_name }}"
                     },
                     "geometry": {{ obj.geom|safe }}
                 },

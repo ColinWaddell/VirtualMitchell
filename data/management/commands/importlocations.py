@@ -44,6 +44,7 @@ class Command(BaseCommand):
                 except Location.DoesNotExist:
                     location = Location(
                         place_id=int(details["place_id"]),
+                        display_name=details["display_name"],
                         lat=float(details["lat"]),
                         lon=float(details["lon"]),
                         osm_id=int(details["osm_id"]),

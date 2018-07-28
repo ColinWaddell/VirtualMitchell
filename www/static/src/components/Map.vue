@@ -8,7 +8,7 @@
         </l-map>
     </div>
     <div v-if="records">
-        <h4>{{ records.length }} Record<span v-if="records.length > 1">s</span>:</h4>
+        <h6 class="text-secondary">{{ records.length }} Record<span v-if="records.length > 1">s</span> found:</h6>
         <table class="table records">
             <thead class="thead-default">
                 <tr>
@@ -95,6 +95,7 @@
                 center: [55.8642, -4.251],
                 geojson: locations,
                 records: null,
+                display_name: null,
                 baseurl: "http://www.mitchelllibrary.org/virtualmitchell/",
                 options: {
                     style: function () {
@@ -125,12 +126,14 @@
         methods: {
             load_place: function (event) {
                 let records_url = event.layer.feature.properties.record_request_url;
-                this.load_records_url(records_url);
+                let display_name = event.layer.feature.properties.display_name;
+                this.load_records_url(records_url, display_name);
             },
 
-            load_records_url: function(records_url) {
+            load_records_url: function(records_url, display_name) {
                 axios.get(records_url).then(response => {
                     this.records = response.data;
+                    this.display_name = display_name
                 });
             },
 
