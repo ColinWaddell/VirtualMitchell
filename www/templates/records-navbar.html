@@ -29,7 +29,7 @@
                                 {% bootstrap_form filter.form layout='vertical' size='small' show_label=False field_class='col' label_class='col col-form-label' %}
                                 <div class="col text-center">
                                     {% bootstrap_button '<span class="glyphicon glyphicon-search" aria-hidden="true"></span> Filter' button_class 'btn-primary btn-sm' %}
-                                    {% bootstrap_button '<span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Clear' button_class='btn-dark btn-sm' button_type='link' href=home_url %}
+                                    {% bootstrap_button '<span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Clear' button_class='btn-dark btn-sm' button_type='link' href='?' %}
                                 </div>
                             </form>
                             {% endif %}   
@@ -77,5 +77,12 @@
                         $('#id_date__year__gt').attr('min', 1690)
                         $('#id_date__year__gt').attr('max', 2000)
 
+                        $('#id_records__tags').attr('size', 10)
+                        $('#id_records__date__year__lt').attr('step', 10)
+                        $('#id_records__date__year__lt').attr('min', 1690)
+                        $('#id_records__date__year__lt').attr('max', 2000)
+                        $('#id_records__date__year__gt').attr('step', 10)
+                        $('#id_records__date__year__gt').attr('min', 1690)
+                        $('#id_records__date__year__gt').attr('max', 2000)
                     });;
                 </script>
