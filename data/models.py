@@ -1,4 +1,5 @@
 from django.db import models
+from rest_framework.reverse import reverse
 from djgeojson.fields import GeoJSONField, GeometryField
 
 
@@ -45,5 +46,8 @@ class Location(models.Model):
         return str(self.place_id)
 
     @property
-    def record_count(self):
-        return self.records.count()
+    def record_request_url(self):
+        return "%s?place_id=%d" % (
+            reverse('api:locationrecords-list'),
+            self.place_id
+        )
