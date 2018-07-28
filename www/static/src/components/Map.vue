@@ -47,7 +47,7 @@
                             <a :if="record.caption" :href="image_url" class="image-caption">{{ record.caption }}</a>
                         </div>
                     </td>
-                    <td>{{ caption }}</td>
+                    <td>{{ record.description }}</td>
                     <td width="300" style="white-space: pre;">{{ get_address(record) }}</td>
                     <td width="150">{{ record.date_raw }}</td>
                     <td width="200">
