@@ -63,8 +63,8 @@
             </tbody>
         </table>
     </div>
-    <div v-else class="alert alert-primary" role="alert">
-        Click a feature in the map to see its records
+    <div v-else class="alert alert-info" role="alert">
+        Click on a feature above to see its records
     </div>
   </div>
 </template>
@@ -72,6 +72,12 @@
 <script>
     import { LMap, LTileLayer, LGeoJson, LMarker } from 'vue2-leaflet';
     import axios from 'axios';
+
+    function onEachFeature(feature, layer) {
+        let popupContent = Vue.extend(PopupContent);
+        let popup = new popupContent({ propsData: { type: feature.geometry.type, text: feature.properties.popupContent }});
+        layer.bindPopup(popup.$mount().$el);
+    }
     
     export default {
         name: 'vmmap',
@@ -99,7 +105,7 @@
                             fillColor: '#e83e8c',
                             fillOpacity: 1,
                         }
-                    }
+                    },
                 },
                 url:'http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png',
                 attribution:'&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
@@ -108,13 +114,21 @@
 
         mounted() {
             window.setTimeout(() => {
-                this.resize_to_fit()
-            }, 300);
+                this.resize_to_fit();
+                if (this.geojson.length == 1){
+                    console.log('ads')
+                    this.load_records_url(this.geojson[0].properties.record_request_url);
+                }
+            }, 0);
         },
 
         methods: {
             load_place: function (event) {
                 let records_url = event.layer.feature.properties.record_request_url;
+                this.load_records_url(records_url);
+            },
+
+            load_records_url: function(records_url) {
                 axios.get(records_url).then(response => {
                     this.records = response.data;
                 });

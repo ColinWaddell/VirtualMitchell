@@ -1,6 +1,7 @@
 {# tutorial/templates/tutorial/people.html #}
 {% load render_table from django_tables2 %}
 {% load bootstrap4 %}
+{% load leaflet_tags %}
 {% load static %}
 
 <!doctype html>
@@ -13,6 +14,8 @@
         <script src="{% static 'js/vm.js' %}"></script>
         <script src="{% static 'js/jquery-ui.min.js' %}"></script>
         <link href="{% static 'css/lightbox.css' %}" rel="stylesheet">
+        {% leaflet_js %}
+        {% leaflet_css %}
         <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" />
 
         <!-- Global site tag (gtag.js) - Google Analytics -->

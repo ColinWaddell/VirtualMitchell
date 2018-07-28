@@ -3,8 +3,8 @@
 {% load leaflet_tags %}
 {% load static %}
 
-{% include 'map-header.html' with title="Browse Records" %}
-{% include 'records-navbar.html' with search_url='www:map' %}
+{% include 'header.html' with title="Browse Records" %}
+{% include 'records-navbar.html' with search_tag="records__tags" %}
 
     <script type="text/javascript">
         var locations = [
