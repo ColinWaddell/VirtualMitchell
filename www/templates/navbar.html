@@ -1,13 +1,29 @@
 {% load bootstrap4 %}
 {% load static %}
 {% url 'www:index' as home_url %}
+{% url 'www:map' as map_url %}
 
     <nav class="navbar navbar-dark fixed-top bg-dark navbar-expand-lg flex-md-nowrap p-0">
         <input class="col-10 col-md-3 form-control form-control-dark" type="text" id="quicksearch" placeholder="Search..." aria-label="Search...">
-        <a class="navbar-brand col-2 col-md-9" href="{% url 'www:index' %}">
+        <a class="navbar-brand col-2 col-md-8" href="{% url 'www:index' %}">
             <span class="d-md-inline d-none">Virtual Mitchell</span>
             <span class="d-md-none">VM</span>
         </a>
+        <ul class="navbar-nav navbar-controls col-1">
+            {% if request.get_full_path == map_url %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'www:index' %}">
+                    <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+                </a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'www:map' %}">
+                    <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+                </a>
+            </li>
+            {% endif %}
+        </ul>
     </nav>
 
     <div class="container-fluid">

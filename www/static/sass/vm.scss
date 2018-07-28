@@ -110,6 +110,18 @@
     margin: 0 0 10px 10px;
   }
 
+  .navbar-controls{
+    text-align: center;
+    background: darken($dark, 2.5%);
+
+    .nav-item{
+      width: 100%;
+      .nav-link{
+        color: $light;
+      }
+    }
+  }
+
   .nav-item {
     label{
       padding-top: 10px;

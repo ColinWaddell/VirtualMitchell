@@ -2,7 +2,7 @@
 <template>
   <div class="map">
     <div style="height: 450px">
-        <l-map style="height: 90%" :zoom="zoom" :center="center" ref="map">
+        <l-map style="height: 90%; border-radius: 0.25rem;" :zoom="zoom" :center="center" ref="map">
             <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
             <l-geo-json :geojson="geojson" :options="options" @click="load_place" ref="geojson"></l-geo-json>
         </l-map>
@@ -64,7 +64,7 @@
         </table>
     </div>
     <div v-else class="alert alert-info" role="alert">
-        Click on a feature above to see its records
+        Select something from the map
     </div>
   </div>
 </template>
