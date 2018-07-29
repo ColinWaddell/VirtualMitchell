@@ -105,9 +105,9 @@
                         return {
                             weight: 4,
                             color: '#e83e8c',
-                            opacity: 1,
+                            opacity: 0.7,
                             fillColor: '#e83e8c',
-                            fillOpacity: 1,
+                            fillOpacity: 0.2,
                         }
                     },
                 },
