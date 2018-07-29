@@ -1,8 +1,8 @@
 from django.contrib import admin
 from .models import Record, Tag, Location
+from leaflet.admin import LeafletGeoAdmin
 
-
-class LocationAdmin(admin.ModelAdmin):
+class LocationAdmin(LeafletGeoAdmin):
     model = Location
     filter_horizontal = ['records']
 

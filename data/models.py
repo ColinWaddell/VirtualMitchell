@@ -39,7 +39,7 @@ class Location(models.Model):
     osm_id = models.BigIntegerField()
     lat = models.FloatField()
     lon = models.FloatField()
-    bbox = GeometryField()
+    bbox = GeometryField(blank=True, null=True)
     geom = GeoJSONField(null=True, blank=True)
     records = models.ManyToManyField(Record)
 
