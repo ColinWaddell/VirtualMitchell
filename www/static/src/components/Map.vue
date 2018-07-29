@@ -27,6 +27,7 @@
                     :index="index"
                     :key="record.record_number"
                 >
+                    <!-- {{ record.record_number }} -->
                     <td width="250" style="
                         background: white;
                         padding: 10px;
@@ -62,6 +63,7 @@
                 </tr>
             </tbody>
         </table>
+        <p class="text-muted font-italic">{{ place_id }}</p>
     </div>
     <div v-else class="alert alert-info" role="alert">
         Select something from the map
@@ -96,6 +98,7 @@
                 geojson: locations,
                 records: null,
                 display_name: null,
+                place_id: null,
                 baseurl: "http://www.mitchelllibrary.org/virtualmitchell/",
                 options: {
                     style: function () {
@@ -127,6 +130,8 @@
             load_place: function (event) {
                 let records_url = event.layer.feature.properties.record_request_url;
                 let display_name = event.layer.feature.properties.display_name;
+                this.place_id = event.layer.feature.properties.place_id;
+
                 this.load_records_url(records_url, display_name);
             },
 
