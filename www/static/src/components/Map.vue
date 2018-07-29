@@ -63,7 +63,7 @@
                 </tr>
             </tbody>
         </table>
-        <p class="text-muted font-italic">{{ place_id }}</p>
+        <p hidden class="text-muted font-italic">{{ place_id }}</p>
     </div>
     <div v-else class="alert alert-info" role="alert">
         Select something from the map
