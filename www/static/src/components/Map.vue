@@ -133,8 +133,7 @@
                 this.place_id = event.layer.feature.properties.place_id;
 
                 this.load_records_url(records_url, display_name);
-                this.jump_to_spot(event.latlng);
-                
+                // this.jump_to_spot(event.latlng); // needs work
             },
 
             load_records_url: function(records_url, display_name) {
