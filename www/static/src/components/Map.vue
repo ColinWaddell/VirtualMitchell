@@ -133,6 +133,8 @@
                 this.place_id = event.layer.feature.properties.place_id;
 
                 this.load_records_url(records_url, display_name);
+                this.jump_to_spot(event.latlng);
+                
             },
 
             load_records_url: function(records_url, display_name) {
@@ -140,6 +142,13 @@
                     this.records = response.data;
                     this.display_name = display_name
                 });
+            },
+
+            jump_to_spot: function(latlng){
+                var corner1 = L.latLng(latlng.lat-0.01, latlng.lng-0.01)
+                let corner2 = L.latLng(latlng.lat+0.01, latlng.lng+0.01)
+                let bounds = L.latLngBounds(corner1, corner2);
+                this.$refs.map.setBounds(bounds)
             },
 
             resize_to_fit: function(event) {
