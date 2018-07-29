@@ -10,7 +10,7 @@
             <span class="d-md-none">VM</span>
         </a>
         <ul class="navbar-nav navbar-controls col-1">
-            {% if request.get_full_path == map_url %}
+            {% if request.path == map_url %}
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'www:index' %}">
                     <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
