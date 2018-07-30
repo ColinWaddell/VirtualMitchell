@@ -33,7 +33,12 @@ class LocationRecordsViewSet(viewsets.ModelViewSet):
         if place_id is not None:
             queryset = Location.objects.get(place_id=place_id)
             record_query = self._build_record_query(self.request.query_params)
-            return queryset.records.filter(**record_query)
+            record_filtered = queryset.records.filter(**record_query)
+
+            if len(record_filtered) == 0:
+                raise NotFound
+                
+            return record_filtered
         
         raise NotFound
 

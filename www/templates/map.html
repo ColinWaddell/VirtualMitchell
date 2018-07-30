@@ -13,7 +13,7 @@
                 {
                     "type": "Feature",
                     "properties": {
-                        "record_request_url": "{{ obj.record_request_url }}",
+                        "record_request_url": "{{ obj.record_request_url }}&{{request.GET.urlencode}}",
                         "display_name": "{{ obj.display_name }}",
                         "place_id": "{{ obj.place_id }}",
                     },
