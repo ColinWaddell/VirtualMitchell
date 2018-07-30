@@ -36,6 +36,10 @@ class RecordFilter(django_filters.FilterSet):
 
 class LocationFilter(django_filters.FilterSet):
 
+    records__tags = django_filters.ModelMultipleChoiceFilter(
+        queryset=Tag.objects
+    )
+
     def __init__(self, *args, **kwargs):
         super(LocationFilter, self).__init__(*args, **kwargs)
         self.filters['records__street__icontains'].label = "Street"

@@ -17,15 +17,21 @@ class LocationRecordsViewSet(viewsets.ModelViewSet):
     def _build_record_query(self, query_params):
         record_query = self.request.query_params.copy()
         try:
-            record_query.pop('place_id')
+            del record_query['place_id']
         except KeyError:
             # must already be missing
             pass
-        record_query = {
+
+        record_query_formatted = {
             key.replace('records__', '') : value
             for (key, value) in record_query.items()
         }
-        return record_query
+
+        if ('tags' in record_query_formatted):
+            record_query_formatted['tags__in'] = self.request.query_params.getlist('records__tags')
+            del record_query_formatted['tags']
+
+        return record_query_formatted
 
 
     def get_queryset(self):
