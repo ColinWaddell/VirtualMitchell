@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from django_filters import rest_framework as filters
+from django_filters.filterset import FilterSet
 from rest_framework.response import Response
 from rest_framework.exceptions import NotFound
 from django_filters.views import FilterView
@@ -13,11 +14,26 @@ class LocationRecordsViewSet(viewsets.ModelViewSet):
     queryset = Record.objects.all()
     serializer_class = RecordSerializer
 
+    def _build_record_query(self, query_params):
+        record_query = self.request.query_params.copy()
+        try:
+            record_query.pop('place_id')
+        except KeyError:
+            # must already be missing
+            pass
+        record_query = {
+            key.replace('records__', '') : value
+            for (key, value) in record_query.items()
+        }
+        return record_query
+
+
     def get_queryset(self):
         place_id = self.request.query_params.get('place_id', None)
         if place_id is not None:
             queryset = Location.objects.get(place_id=place_id)
-            return queryset.records.all()
+            record_query = self._build_record_query(self.request.query_params)
+            return queryset.records.filter(**record_query)
         
         raise NotFound
 
