@@ -1,6 +1,6 @@
 from django.db import models
 from rest_framework.reverse import reverse
-from djgeojson.fields import GeoJSONField, GeometryField
+from djgeojson.fields import GeoJSONField, GeometryField, PointField
 
 
 class Tag(models.Model):
@@ -39,7 +39,6 @@ class Location(models.Model):
     osm_id = models.BigIntegerField()
     lat = models.FloatField()
     lon = models.FloatField()
-    bbox = GeometryField(blank=True, null=True)
     geom = GeoJSONField(null=True, blank=True)
     records = models.ManyToManyField(Record)
 
@@ -52,3 +51,6 @@ class Location(models.Model):
             reverse('api:locationrecords-list'),
             self.place_id
         )
+    
+    def get_absolute_url(self):
+        return reverse('www:locationedit', kwargs={'place_id': self.place_id})

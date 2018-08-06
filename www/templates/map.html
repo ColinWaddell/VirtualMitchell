@@ -25,18 +25,8 @@
     </script>
 
     <main role="main" class="col-md-9 ml-sm-auto">
-        <div id="map"></div>
+        <vmmap></vmmap>
     </main>
-
-<script>
-    $("#quicksearch").focus(function(e){
-        $(".sidebar-sticky").fadeOut(500);
-        $(".sidebar-search-message").fadeIn(1000);
-    }).focusout(function(e){
-        $(".sidebar-sticky").fadeIn(500);
-        $(".sidebar-search-message").fadeOut(100);
-    });
-</script>
 
 <style>
 .leaflet-container {  /* all maps */

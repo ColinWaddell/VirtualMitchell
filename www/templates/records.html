@@ -9,15 +9,4 @@
         {% render_table table 'records-table.html' %}
     </main>
 
-<script>
-
-$("#quicksearch").focus(function(e){
-    $(".sidebar-sticky").fadeOut(500);
-    $(".sidebar-search-message").fadeIn(1000);
-}).focusout(function(e){
-    $(".sidebar-sticky").fadeIn(500);
-    $(".sidebar-search-message").fadeOut(100);
-})
-</script>
-
 {% include 'records-footer.html' %}

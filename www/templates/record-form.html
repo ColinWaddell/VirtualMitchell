@@ -1,0 +1,31 @@
+{% load bootstrap4 %}
+{% load static %}
+
+{% include 'header.html' with title="Edit Record" %}
+{% include 'navbar.html' with search_tag="tags" %}
+
+{% url 'www:recordlocation' record.id as recordlocation_edit %}
+
+    <main role="main" class="col-md-9 ml-sm-auto">
+        <form method="post">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <hr />
+            {% if record.location_set.count %}
+                <h3>Assigned Location:</h3>
+                <ul>
+                    {% for location in record.location_set.all %}
+                        <li>{{ location.display_name }}</li>
+                    {% endfor %}
+                </ul>
+                {% bootstrap_button content='Adjust Location' button_type='link' href=recordlocation_edit button_class='btn-success' %}
+            {% else %}
+                {% bootstrap_button content='Assign Location' button_type='link' href=recordlocation_edit button_class='btn-success' %}
+            {% endif %}
+            <hr />
+            {% bootstrap_button content='Update' button_type='submit' button_class='btn-primary' %}
+        </form>
+        <hr />
+    </main>
+
+{% include 'records-footer.html' %}

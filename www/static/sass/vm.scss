@@ -69,6 +69,7 @@
   
   [role="main"] {
     padding-top: 70px; /* Space for fixed navbar */
+    margin-bottom: 35px;
     @include media-breakpoint-down(sm) { 
       padding-top: 35px;
     }

@@ -8,9 +8,9 @@ class RecordTable(tables.Table):
 
     image_url = tables.TemplateColumn('''
             {% if request.user.is_superuser %}
-                <a href="{% url 'admin:data_record_change' record.id %}"><small><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></small></a>
+                <a href="{% url 'www:recordedit' record.id %}"><small><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></small></a>
                 {% for location in record.location_set.all %}
-                    <a href="{% url 'admin:data_location_change' location.place_id %}"><small><span class="glyphicon glyphicon-globe" aria-hidden="true"></span></small></a>
+                    <a href="{% url 'www:locationedit' location.place_id %}"><small><span class="glyphicon glyphicon-globe" aria-hidden="true"></span></small></a>
                 {% endfor %}
             {% endif %}
             <div class="record-thumbnail">
