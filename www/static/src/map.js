@@ -1,8 +1,8 @@
 const Vue = require('vue');
 
-const MapApp = require('./components/Map.vue');
+const VueMap = require('./components/VueMap.vue');
 
 new Vue({
-  el: 'vmmap',
-  render: (createElement) => createElement(MapApp)
+  el: 'vuemap',
+  render: (createElement) => createElement(VueMap)
 });

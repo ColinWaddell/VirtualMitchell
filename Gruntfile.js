@@ -98,6 +98,18 @@ module.exports = function (grunt) {
                         ["vueify", ]
                     ]
                 }
+            },
+            mapsearch: {
+                src: 'www/static/src/mapsearch.js',
+                dest: 'www/static/js/mapsearch.min.js',
+                options: {
+                    browserifyOptions: {
+                        debug: false
+                    },
+                    transform: [
+                        ["vueify", ]
+                    ]
+                }
             }
         }
     });

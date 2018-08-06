@@ -2,10 +2,7 @@
 <template>
   <div class="map">
     <div style="height: 450px">
-        <l-map style="height: 90%; border-radius: 0.25rem;" :zoom="zoom" :center="center" ref="map">
-            <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
-            <l-geo-json :geojson="geojson" :options="options" @click="load_place" ref="geojson"></l-geo-json>
-        </l-map>
+        <vuemap :clickhandler="load_place" :geojson="geojson"></vuemap>
     </div>
     <div v-if="records">
         <h6 class="text-secondary">{{ records.length }} Record<span v-if="records.length > 1">s</span> found:</h6>
@@ -72,55 +69,25 @@
 </template>
 
 <script>
-    import { LMap, LTileLayer, LGeoJson, LMarker } from 'vue2-leaflet';
     import axios from 'axios';
 
-    function onEachFeature(feature, layer) {
-        let popupContent = Vue.extend(PopupContent);
-        let popup = new popupContent({ propsData: { type: feature.geometry.type, text: feature.properties.popupContent }});
-        layer.bindPopup(popup.$mount().$el);
-    }
-    
     export default {
-        name: 'vmmap',
-
-        components: {
-            LMap,
-            LTileLayer,
-            LGeoJson,
-            LMarker
-        },
+        name: 'vmmapsearch',
 
         data () {
             return {
-                zoom: 13,
-                center: [55.8642, -4.251],
-                geojson: locations,
                 records: null,
                 display_name: null,
+                geojson: locations,
                 place_id: null,
                 baseurl: "http://www.mitchelllibrary.org/virtualmitchell/",
-                options: {
-                    style: function () {
-                        return {
-                            weight: 4,
-                            color: '#e83e8c',
-                            opacity: 0.7,
-                            fillColor: '#e83e8c',
-                            fillOpacity: 0.2,
-                        }
-                    },
-                },
-                url:'http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png',
-                attribution:'&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
             }
         },
 
         mounted() {
             window.setTimeout(() => {
-                this.resize_to_fit();
+                // this.resize_to_fit();
                 if (this.geojson.length == 1){
-                    console.log('ads')
                     this.load_records_url(this.geojson[0].properties.record_request_url);
                 }
             }, 0);
