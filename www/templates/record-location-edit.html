@@ -20,6 +20,19 @@
         </form>
     </main>
 
+    <script>
+        window.geojson = 
+        {% if record.location_set.count > 0 %}
+            {% for location in record.location_set.all %}
+                [
+                    {{ location.geom|safe }},
+                ];
+            {% endfor %}
+        {% else %}
+            null;
+        {% endif %}
+    </script>
+
     <script src="{% static 'js/recordlocation.min.js' %}"></script>
 
 {% include 'records-footer.html' %}

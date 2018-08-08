@@ -76,7 +76,10 @@
         },
 
         mounted() {
-
+            if (window.geojson){
+                this.geojson = window.geojson;
+                this.$refs.map.resize_to_fit();
+            }
         },
 
         methods: {
