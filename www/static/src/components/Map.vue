@@ -23,7 +23,7 @@
                 <tr 
                     scope="row" 
                     v-for="(record, index) in records"
-                    :item="record"
+                    :item="record.record_number"
                     :index="index"
                     :key="record.record_number"
                 >
