@@ -40,7 +40,7 @@ class Location(models.Model):
     lat = models.FloatField()
     lon = models.FloatField()
     geom = GeoJSONField(null=True, blank=True)
-    records = models.ManyToManyField(Record)
+    records = models.ManyToManyField(Record, null=True, blank=True)
 
     def __str__(self):
         return str(self.place_id)

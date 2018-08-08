@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.views import View
 from django.db.models import Max
 from django.forms.models import modelform_factory
@@ -60,11 +60,12 @@ class RecordsView(SingleTableMixin, FilterView):
 class RecordLocationAppView(LoginRequiredMixin, FormView):
     template_name = 'record-location-edit.html'
     form_class = RecordLocationForm
-    success_url = '/'
+
+    def get_success_url(self):
+        return reverse_lazy('www:recordedit', kwargs=self.kwargs)
 
     def form_valid(self, form):
-        # This method is called when valid form data has been POSTed.
-        # It should return an HttpResponse.
+        form.update_location()
         return super().form_valid(form)
 
     def get_initial(self):
@@ -74,7 +75,7 @@ class RecordLocationAppView(LoginRequiredMixin, FormView):
             # getrecordor404
             record = Record.objects.get(id=record_id)
             place = record.location_set.first()
-            place_id = place.place_id
+            place_id = place.place_id if place else None
 
         except (IndexError, Record.DoesNotExist):
             place_id = None
