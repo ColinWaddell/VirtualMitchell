@@ -5,7 +5,7 @@ from django.db.models import Max
 from django.forms.models import modelform_factory
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import FormView
-from django.forms import TextInput
+from django.forms import TextInput, DateInput, Textarea
 
 from data.models import Record, Location
 
@@ -46,7 +46,11 @@ class RecordUpdate(LoginRequiredMixin, UpdateView):
     model = Record
     form_class = modelform_factory(
         Record,
-        exclude=('date_raw', ),
+        exclude=(
+            'record_number',
+            'image_url',
+            'date_raw'
+        ),
         widgets={
             "area": TextInput,
             "street": TextInput,
@@ -54,7 +58,7 @@ class RecordUpdate(LoginRequiredMixin, UpdateView):
             "caption": TextInput,
             "image_url": TextInput,
             "description": TextInput,
-        }
+        },
     )
     template_name = 'record-form.html'
     pk_url_kwarg = 'id'

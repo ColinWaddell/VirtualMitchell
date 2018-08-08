@@ -4,7 +4,13 @@
 {% url 'www:map' as map_url %}
 
     <nav class="navbar navbar-dark fixed-top bg-dark navbar-expand-lg flex-md-nowrap p-0">
-        <input class="col-10 col-md-3 form-control form-control-dark" type="text" id="quicksearch" placeholder="Search..." aria-label="Search...">
+        {% if search_tag %}
+            <input class="col-10 col-md-3 form-control form-control-dark" type="text" id="quicksearch" placeholder="Search..." aria-label="Search...">
+        {% else %}
+            <span class="col-10 col-md-3">
+                &nbsp;
+            </span>
+        {% endif %}
         <a class="navbar-brand col-2 col-md-8" href="{% url 'www:index' %}">
             <span class="d-md-inline d-none">Virtual Mitchell</span>
             <span class="d-md-none">VM</span>

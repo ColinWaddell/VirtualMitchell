@@ -18,7 +18,11 @@
                         </button>
                     </div>
                 </div>
-                <h6 v-if="results">Select a result:</h6>
+
+                <h6 v-if="!results && !search_term">Search for a location in Glasgow</h6>
+                <h6 v-if="!results && search_term">Hit the search button</h6>
+                
+                <h6 v-if="results && results.length">Select a result:</h6>
                 <span 
                     v-if="results"
                     v-for="(result, index) in results"
@@ -32,10 +36,9 @@
                         @click="result_click(result)"
                         v-html="index + 1"
                     ></button>
-                    <span v-if="index !== results.length - 1"> </span>
-                </span>
 
-                <p v-else>Search for a better location</p>
+                </span>
+                <h6 v-if="results && results.length==0">Nothing found</h6>
 
                 <div v-if="selected">
                     <hr />
