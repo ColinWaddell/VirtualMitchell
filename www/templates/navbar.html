@@ -4,7 +4,13 @@
 {% url 'www:map' as map_url %}
 
     <nav class="navbar navbar-dark fixed-top bg-dark navbar-expand-lg flex-md-nowrap p-0">
-        <input class="col-10 col-md-3 form-control form-control-dark" type="text" id="quicksearch" placeholder="Search..." aria-label="Search...">
+        {% if search_tag %}
+            <input class="col-10 col-md-3 form-control form-control-dark" type="text" id="quicksearch" placeholder="Search..." aria-label="Search...">
+        {% else %}
+            <span class="col-10 col-md-3">
+                &nbsp;
+            </span>
+        {% endif %}
         <a class="navbar-brand col-2 col-md-8" href="{% url 'www:index' %}">
             <span class="d-md-inline d-none">Virtual Mitchell</span>
             <span class="d-md-none">VM</span>
@@ -34,12 +40,13 @@
                 </div>
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column collapse navbar-collapse" id="filterToggle">
+                        
+                        {% if filter %}
                         <li class="nav-item">
                           <h5 class="col">Additional Filters:</h5>
                           <hr>
                         </li>
                         <li class="nav-item">
-                            {% if filter %}
                             <form action="" method="get" class="form-group" id="searchform">
                                 {% bootstrap_form filter.form layout='vertical' size='small' show_label=False field_class='col' label_class='col col-form-label' %}
                                 <div class="col text-center">
@@ -47,9 +54,19 @@
                                     {% bootstrap_button '<span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Clear' button_class='btn-dark btn-sm' button_type='link' href='?' %}
                                 </div>
                             </form>
-                            {% endif %}   
                         </li>
-                        <li class="nav-item border-top">
+                        {% endif %}   
+
+                        {% if single_record %}
+                            <div class="row justify-content-center">
+                                <div class="col-11">
+                                    {% include 'record-card.html' with record=single_record %}
+                                </div>
+                            </div>
+                            <hr />
+                        {% endif %}
+
+                        <li class="nav-item {% if filter %}border-top{% endif %}">
                             <div class="col small site-details">
                                 <p>Site built by <a href="https://github.com/ColinWaddell/VirtualMitchell" target="_blank">Colin Waddell</a></p>
                                 <p>All content belongs to Glasgow City Council's <a href="http://www.mitchelllibrary.org/virtualmitchell/" target="_blank">Virtual Mitchell</a></p>
@@ -71,6 +88,12 @@
                             select: function( event, ui ) {
                                 window.location.href = "?&{{ search_tag }}=" + ui.item.label;
                             },
+                        }).focus(function(e){
+                            $(".sidebar-sticky").fadeOut(500);
+                            $(".sidebar-search-message").fadeIn(1000);
+                        }).focusout(function(e){
+                            $(".sidebar-sticky").fadeIn(500);
+                            $(".sidebar-search-message").fadeOut(100);
                         });
 
                         /* Tidy up url on search */

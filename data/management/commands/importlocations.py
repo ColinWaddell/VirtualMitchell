@@ -48,7 +48,6 @@ class Command(BaseCommand):
                         lat=float(details["lat"]),
                         lon=float(details["lon"]),
                         osm_id=int(details["osm_id"]),
-                        bbox=details["boundingbox"],
                         geom=details["geojson"] if "geojson" in details else None,
                     )
                     location.save()

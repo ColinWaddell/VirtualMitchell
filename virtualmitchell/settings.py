@@ -173,6 +173,11 @@ LEAFLET_CONFIG = {
     'DEFAULT_ZOOM': 12,
     'MIN_ZOOM': 3,
     'MAX_ZOOM': 18,
+    'PLUGINS': {
+        'forms': {
+            'auto-include': True
+        }
+    }
 }
 
 # Django Tables

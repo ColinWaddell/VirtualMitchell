@@ -75,17 +75,41 @@ module.exports = function (grunt) {
         },
 
         browserify: {
-            bundle: {
-                src: 'www/static/src/index.js',
-                dest: 'www/static/js/map.min.js'
+            map: {
+                src: 'www/static/src/map.js',
+                dest: 'www/static/js/map.min.js',
+                options: {
+                    browserifyOptions: {
+                        debug: false
+                    },
+                    transform: [
+                        ["vueify", ]
+                    ]
+                }
             },
-            options: {
-                browserifyOptions: {
-                    debug: false
-                },
-                transform: [
-                    ["vueify", ]
-                ]
+            recordlocation: {
+                src: 'www/static/src/recordlocation.js',
+                dest: 'www/static/js/recordlocation.min.js',
+                options: {
+                    browserifyOptions: {
+                        debug: false
+                    },
+                    transform: [
+                        ["vueify", ]
+                    ]
+                }
+            },
+            mapsearch: {
+                src: 'www/static/src/mapsearch.js',
+                dest: 'www/static/js/mapsearch.min.js',
+                options: {
+                    browserifyOptions: {
+                        debug: false
+                    },
+                    transform: [
+                        ["vueify", ]
+                    ]
+                }
             }
         }
     });
