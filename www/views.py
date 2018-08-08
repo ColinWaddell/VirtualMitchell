@@ -79,6 +79,12 @@ class RecordLocationAppView(LoginRequiredMixin, FormView):
     template_name = 'record-location-edit.html'
     form_class = RecordLocationForm
 
+    def get_context_data(self, **kwargs):
+        context = super(RecordLocationAppView, self).get_context_data(**kwargs)
+        record_id = self.kwargs['id']
+        context["record"] = Record.objects.get(id=record_id)
+        return context
+
     def get_success_url(self):
         return reverse_lazy('www:recordedit', kwargs=self.kwargs)
 
@@ -100,7 +106,7 @@ class RecordLocationAppView(LoginRequiredMixin, FormView):
 
         return {
             'record_id': record_id,
-            'place_id': place_id
+            'place_id': place_id,
         }
 
 

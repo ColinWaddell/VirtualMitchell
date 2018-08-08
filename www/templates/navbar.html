@@ -40,6 +40,7 @@
                 </div>
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column collapse navbar-collapse" id="filterToggle">
+                        
                         {% if filter %}
                         <li class="nav-item">
                           <h5 class="col">Additional Filters:</h5>
@@ -55,6 +56,16 @@
                             </form>
                         </li>
                         {% endif %}   
+
+                        {% if single_record %}
+                            <div class="row justify-content-center">
+                                <div class="col-11">
+                                    {% include 'record-card.html' with record=single_record %}
+                                </div>
+                            </div>
+                            <hr />
+                        {% endif %}
+
                         <li class="nav-item {% if filter %}border-top{% endif %}">
                             <div class="col small site-details">
                                 <p>Site built by <a href="https://github.com/ColinWaddell/VirtualMitchell" target="_blank">Colin Waddell</a></p>

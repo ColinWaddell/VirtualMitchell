@@ -1,6 +1,13 @@
 <template>
     <div>
         <div class="row">
+            <div class="col-9">
+                <div class="map">
+                    <div style="height: 450px">
+                        <vuemap :clickhandler="map_click" :geojson="geojson" ref="map"></vuemap>
+                    </div>
+                </div>
+            </div>
             <div class="col-3">
                 <div class="input-group mb-3">
                     <input 
@@ -19,8 +26,8 @@
                     </div>
                 </div>
 
-                <h6 v-if="!results && !search_term">Search for a location in Glasgow</h6>
-                <h6 v-if="!results && search_term">Hit the search button</h6>
+                <span class="badge badge-primary" v-if="!results && !search_term">Search for a location in Glasgow</span>
+                <span class="badge badge-info" v-if="!results && search_term">Hit the search button</span>
                 
                 <h6 v-if="results && results.length">Select a result:</h6>
                 <span 
@@ -36,20 +43,17 @@
                         @click="result_click(result)"
                         v-html="index + 1"
                     ></button>
-
+                    <span> </span>
                 </span>
-                <h6 v-if="results && results.length==0">Nothing found</h6>
+
+                <span 
+                    class="badge badge-warning"
+                    v-if="results && results.length==0"
+                    >Nothing found</span>
 
                 <div v-if="selected">
                     <hr />
                     {{ selected.display_name }}
-                </div>
-            </div>
-            <div class="col-9">
-                <div class="map">
-                    <div style="height: 450px">
-                        <vuemap :clickhandler="map_click" :geojson="geojson" ref="map"></vuemap>
-                    </div>
                 </div>
             </div>
         </div>

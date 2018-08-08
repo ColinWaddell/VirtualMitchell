@@ -1,15 +1,22 @@
 {% load bootstrap4 %}
 {% load static %}
 
+{% url 'www:recordedit' record.id as recordedit_url %}
+
 {% include 'header.html' with title="Assign Record Location" %}
-{% include 'navbar.html' with search_tag=None %}
+{% include 'navbar.html' with search_tag=None single_record=record %}
 
     <main role="main" class="col-md-9 ml-sm-auto">
         <recordlocation></recordlocation>
         <form method="post">
             {% csrf_token %}
-            <div>{% bootstrap_form form %}</div>
+
+            <div hidden>
+                {% bootstrap_form form %}
+            </div>
+
             {% bootstrap_button content='Update' button_type='submit' button_class='btn-primary' %}
+            {% bootstrap_button content='Cancel' href=recordedit_url button_type='link' button_class='btn-dark' %}
         </form>
     </main>
 
