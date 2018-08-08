@@ -28,7 +28,7 @@
 
         data () {
             return {
-                zoom: 13,
+                zoom: 12,
                 center: [55.8642, -4.251],
                 options: {
                     style: function () {
