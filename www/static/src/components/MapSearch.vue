@@ -32,6 +32,10 @@
                     ">
                         <div class="record-thumbnail">
                             <a 
+                                v-if="superuser" 
+                                :href="editurl + record.id"><small><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></small>
+                            </a>
+                            <a 
                                 :href="baseurl + record.image_url"
                                 target="_blank"
                                 class="record-thumbnail-img"
@@ -79,12 +83,17 @@
                 records: null,
                 display_name: null,
                 geojson: locations,
+                superuser: false,
                 place_id: null,
                 baseurl: "http://www.mitchelllibrary.org/virtualmitchell/",
+                editurl: "/record/edit/",
             }
         },
 
         mounted() {
+            if(window.superuser){
+                this.superuser = true;
+            }
             window.setTimeout(() => {
                 this.resize_to_fit();
                 if (this.geojson.length == 1){

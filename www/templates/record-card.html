@@ -1,0 +1,34 @@
+<div class="card record-card">
+        <h5 class="card-header">{{ record.record_number }}</h5>
+    <img
+        class="card-img-top"
+        src="http://www.mitchelllibrary.org/virtualmitchell/{{ record.image_url }}"
+        alt="Card image cap"
+    >
+    <ul class="list-group list-group-flush">
+        {% if record.description %}
+            <li class="list-group-item">
+                <h6 class="card-title">Description</h6>
+                {{ record.description }}
+            </li>
+        {% endif %}
+        {% if record.caption %}
+            <li class="list-group-item">
+                <h6 class="card-title">Caption</h6>
+                {{ record.caption }}
+            </li>
+        {% endif %}
+        {% if record.date %}
+            <li class="list-group-item">
+                <h6 class="card-title">Date</h6>
+                {{ record.date }}
+            </li>
+        {% endif %}
+        <li class="list-group-item">
+            <h6 class="card-title">Address</h6>
+            {% if record.number %}{{ record.number }}, {% endif %}
+            {% if record.street %}{{ record.street }}<br />{% endif %}
+            {% if record.area %}{{ record.area }}{% endif %}
+        </li>
+    </ul>
+</div>

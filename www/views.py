@@ -89,6 +89,7 @@ class RecordLocationAppView(LoginRequiredMixin, FormView):
         return reverse_lazy('www:recordedit', kwargs=self.kwargs)
 
     def form_valid(self, form):
+        # TODO need to generate date_raw on save
         form.update_location()
         return super().form_valid(form)
 
