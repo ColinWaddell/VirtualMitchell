@@ -95,7 +95,6 @@
                 this.superuser = true;
             }
             window.setTimeout(() => {
-                this.resize_to_fit();
                 if (this.geojson.length == 1){
                     this.load_records_url(this.geojson[0].properties.record_request_url);
                 }
