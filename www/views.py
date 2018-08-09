@@ -49,6 +49,7 @@ class RecordUpdate(LoginRequiredMixin, UpdateView):
         exclude=(
             'record_number',
             'image_url',
+            'date_raw'
         ),
         widgets={
             "area": TextInput,
