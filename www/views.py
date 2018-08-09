@@ -49,7 +49,6 @@ class RecordUpdate(LoginRequiredMixin, UpdateView):
         exclude=(
             'record_number',
             'image_url',
-            'date_raw'
         ),
         widgets={
             "area": TextInput,
@@ -62,6 +61,15 @@ class RecordUpdate(LoginRequiredMixin, UpdateView):
     )
     template_name = 'record-form.html'
     pk_url_kwarg = 'id'
+
+    def form_valid(self, form):
+        record = Record.objects.get(id=self.kwargs['id'])
+        form_valid_url = super().form_valid(form)
+        if record.date != form.cleaned_data['date']:
+            record.date = form.cleaned_data['date']
+            record.date_raw = form.cleaned_data['date'].strftime("%b. %Y")
+            record.save()
+        return form_valid_url
 
     def get_success_url(self):
         return reverse_lazy('www:recordedit', kwargs=self.kwargs)

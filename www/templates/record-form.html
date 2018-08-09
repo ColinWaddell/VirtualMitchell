@@ -31,7 +31,9 @@
     </main>
 
     <script>
-        $('#id_date').datepicker()
+        $('#id_date').datepicker({
+            dateFormat: "yy-mm-dd"
+        });
     </script>
 
 {% include 'records-footer.html' %}
