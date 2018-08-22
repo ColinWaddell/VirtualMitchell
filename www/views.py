@@ -7,7 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import FormView
 from django.forms import TextInput, DateInput, Textarea
 
-from data.models import Record, Location
+from data.models import Record, Location, Report
 
 from django_tables2 import RequestConfig
 from leaflet.forms.widgets import LeafletWidget
@@ -63,6 +63,15 @@ class RecordUpdate(LoginRequiredMixin, UpdateView):
     template_name = 'record-form.html'
     pk_url_kwarg = 'id'
 
+    def form_valid(self, form):
+        record = Record.objects.get(id=self.kwargs['id'])
+        form_valid_url = super().form_valid(form)
+        if record.date != form.cleaned_data['date']:
+            record.date = form.cleaned_data['date']
+            record.date_raw = form.cleaned_data['date'].strftime("%b. %Y")
+            record.save()
+        return form_valid_url
+
     def get_success_url(self):
         return reverse_lazy('www:recordedit', kwargs=self.kwargs)
 
@@ -109,6 +118,31 @@ class RecordLocationAppView(LoginRequiredMixin, FormView):
             'record_id': record_id,
             'place_id': place_id,
         }
+
+
+class ReportCreate(CreateView):
+    model = Report
+    template_name = 'record-report.html'
+    fields = ('record', 'place_id', 'comment')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        record_id = self.kwargs['record_id']
+        context["record"] = Record.objects.get(id=record_id)
+        return context
+
+    def get_initial(self):
+        # Get the initial dictionary from the superclass method
+        initial = super().get_initial()
+        initial = initial.copy()
+        initial['record'] = self.kwargs['record_id']
+        return initial
+
+    def get_success_url(self):
+        try:
+            return self.request.GET["return"]
+        except KeyError:
+            return reverse_lazy('www:index')
 
 
 class MapView(SingleTableMixin, FilterView):

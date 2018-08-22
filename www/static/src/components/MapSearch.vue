@@ -33,8 +33,17 @@
                         <div class="record-thumbnail">
                             <a 
                                 v-if="superuser" 
-                                :href="editurl + record.id"><small><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></small>
+                                class="badge badge-pill badge-secondary record-control"
+                                :href="editurl + record.id">
+                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                             </a>
+                            <a 
+                                v-else
+                                class="badge badge-pill badge-secondary record-control"
+                                :href="reporturl + record.id + returnurl">
+                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                            </a>
+
                             <a 
                                 :href="baseurl + record.image_url"
                                 target="_blank"
@@ -79,6 +88,7 @@
         name: 'vmmapsearch',
 
         data () {
+            console.log(this.$router) 
             return {
                 records: null,
                 display_name: null,
@@ -87,6 +97,8 @@
                 place_id: null,
                 baseurl: "http://www.mitchelllibrary.org/virtualmitchell/",
                 editurl: "/record/edit/",
+                reporturl: "/record/report/",
+                returnurl: `/?return=${ encodeURIComponent(window.location.pathname) }${ encodeURIComponent(window.location.search) }`
             }
         },
 
