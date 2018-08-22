@@ -54,3 +54,9 @@ class Location(models.Model):
     
     def get_absolute_url(self):
         return reverse('www:locationedit', kwargs={'place_id': self.place_id})
+
+
+class Report(models.Model):
+    record = models.ForeignKey(Record, on_delete=models.CASCADE)
+    place_id = models.IntegerField(blank=True, null=True)
+    comment = models.TextField(blank=True, null=True)

@@ -1,0 +1,46 @@
+{% load bootstrap4 %}
+{% load static %}
+
+{% url 'www:recordedit' record.id as recordedit_url %}
+
+{% include 'header.html' with title="Report Record" %}
+{% include 'navbar.html' with search_tag=None single_record=record %}
+
+<style>
+    #id_place_id,
+    #id_record{
+        display: none;
+    }
+</style>
+
+    <main role="main" class="col-md-9 ml-sm-auto">
+        <h4>{% if record.location_set.count %}Update{% else %} Set{% endif %} Location</h4>
+        <recordlocation></recordlocation>
+
+        <form method="post">
+            {% csrf_token %}
+            <h4>Other thoughts?</h4>
+            <div>
+                {% bootstrap_form form show_label=False %}
+            </div>
+
+            {% bootstrap_button content='Submit' button_type='submit' button_class='btn-primary' %}
+        </form>
+    </main>
+
+    <script>
+        window.geojson = 
+        {% if record.location_set.count > 0 %}
+            {% for location in record.location_set.all %}
+                [
+                    {{ location.geom|safe }},
+                ];
+            {% endfor %}
+        {% else %}
+            null;
+        {% endif %}
+    </script>
+
+    <script src="{% static 'js/recordlocation.min.js' %}"></script>
+
+{% include 'records-footer.html' %}

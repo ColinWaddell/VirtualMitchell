@@ -7,10 +7,22 @@ from data.models import Record, Location
 class RecordTable(tables.Table):
 
     image_url = tables.TemplateColumn('''
-            {% if request.user.is_superuser %}
-                <a href="{% url 'www:recordedit' record.id %}"><small><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></small></a>
-            {% endif %}
+
             <div class="record-thumbnail">
+                <a
+                    class="badge badge-pill badge-secondary record-control"
+                    {% if request.user.is_superuser %}
+                        href="{% url 'www:recordedit' record.id %}"
+                    {% else %}
+                        href="{% url 'www:recordreport' record.id %}?return={{ request.get_full_path|urlencode }}"
+                    {% endif %}
+                >
+                    {% if request.user.is_superuser %}
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                    {% else %}
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    {% endif %}
+                </a>
                 <a 
                     href="http://www.mitchelllibrary.org/virtualmitchell/{{ record.image_url }}"
                     target="_blank"
