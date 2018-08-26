@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Record, Tag, Location
+from .models import Record, Tag, Location, Report
 from leaflet.admin import LeafletGeoAdmin
 
 class LocationAdmin(LeafletGeoAdmin):
@@ -18,3 +18,4 @@ class RecordAdmin(admin.ModelAdmin):
 admin.site.register(Record, RecordAdmin)
 admin.site.register(Location, LocationAdmin)
 admin.site.register(Tag)
+admin.site.register(Report)
