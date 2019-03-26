@@ -75,11 +75,27 @@
         </table>
         <p hidden class="text-muted font-italic">{{ place_id }}</p>
     </div>
-    <div v-else class="alert alert-info" role="alert">
-        Select something from the map
-    </div>
+    <transition  name="fade">
+        <div v-if="searching" class="alert alert-warning" role="alert">
+            Searching...
+        </div>
+        <div v-if="!records && !searching" class="alert alert-info" role="alert">
+            Select something from the map
+        </div>
+    </transition>
   </div>
 </template>
+
+<style>
+    .fade-enter-active {
+        transition: opacity .5s
+    }
+
+    .fade-enter,
+    .fade-leave-active {
+        opacity: 0
+    }
+</style>
 
 <script>
     import axios from 'axios';
@@ -95,6 +111,7 @@
                 geojson: locations,
                 superuser: false,
                 place_id: null,
+                searching: false,
                 baseurl: "http://www.mitchelllibrary.org/virtualmitchell/",
                 editurl: "/record/edit/",
                 reporturl: "/record/report/",
@@ -124,9 +141,11 @@
             },
 
             load_records_url: function(records_url, display_name) {
+                this.searching = true;
                 axios.get(records_url).then(response => {
                     this.records = response.data.results;
-                    this.display_name = display_name
+                    this.display_name = display_name;
+                    this.searching = false;
                 });
             },
 
