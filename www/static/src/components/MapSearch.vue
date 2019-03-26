@@ -4,6 +4,11 @@
     <div style="height: 450px">
         <vuemap :clickhandler="load_place" :geojson="geojson"></vuemap>
     </div>
+    <transition  name="fade">
+        <div v-if="searching" class="alert alert-warning" role="alert">
+            Searching...
+        </div>
+    </transition>
     <div v-if="records">
         <h6 class="text-secondary">{{ records.length }} Record<span v-if="records.length > 1">s</span> found:</h6>
         <table class="table records">
@@ -76,9 +81,6 @@
         <p hidden class="text-muted font-italic">{{ place_id }}</p>
     </div>
     <transition  name="fade">
-        <div v-if="searching" class="alert alert-warning" role="alert">
-            Searching...
-        </div>
         <div v-if="!records && !searching" class="alert alert-info" role="alert">
             Select something from the map
         </div>
