@@ -5,7 +5,7 @@
         <vuemap :clickhandler="load_place" :geojson="geojson"></vuemap>
     </div>
     <transition name="fade">
-        <div v-if="searching" class="alert alert-warning searching" role="alert">
+        <div v-if="searching" class="alert alert-warning searching shadow" role="alert">
             Searching...
         </div>
     </transition>
@@ -98,10 +98,10 @@
         opacity: 0
     }
     .searching{
-        position: relative;
-        top: -170px;
+        position: absolute;
+        top: 100px;
         z-index: 10000;
-        margin: 50px;
+        right: 75px;
     }
 </style>
 
@@ -153,7 +153,7 @@
                 axios.get(records_url).then(response => {
                     this.records = response.data.results;
                     this.display_name = display_name;
-                    this.searching = false;
+                    // this.searching = false;
                 });
             },
 
