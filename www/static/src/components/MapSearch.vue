@@ -4,8 +4,8 @@
     <div style="height: 450px">
         <vuemap :clickhandler="load_place" :geojson="geojson"></vuemap>
     </div>
-    <transition  name="fade">
-        <div v-if="searching" class="alert alert-warning" role="alert">
+    <transition name="fade">
+        <div v-if="searching" class="alert alert-warning searching" role="alert">
             Searching...
         </div>
     </transition>
@@ -96,6 +96,12 @@
     .fade-enter,
     .fade-leave-active {
         opacity: 0
+    }
+    .searching{
+        position: relative;
+        top: -170px;
+        z-index: 10000;
+        margin: 50px;
     }
 </style>
 
