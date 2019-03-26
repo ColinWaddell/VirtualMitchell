@@ -153,7 +153,7 @@
                 axios.get(records_url).then(response => {
                     this.records = response.data.results;
                     this.display_name = display_name;
-                    // this.searching = false;
+                    this.searching = false;
                 });
             },
 
