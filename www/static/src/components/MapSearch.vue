@@ -125,7 +125,7 @@
 
             load_records_url: function(records_url, display_name) {
                 axios.get(records_url).then(response => {
-                    this.records = response.data;
+                    this.records = response.data.results;
                     this.display_name = display_name
                 });
             },
