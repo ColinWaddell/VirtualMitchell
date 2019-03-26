@@ -100,7 +100,7 @@
     .searching{
         position: absolute;
         top: 100px;
-        z-index: 10000;
+        z-index: 1000;
         right: 75px;
     }
 </style>
