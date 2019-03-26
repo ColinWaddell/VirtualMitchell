@@ -25,6 +25,9 @@ class Record(models.Model):
     caption = models.TextField(null=True, blank=True)
     tags = models.ManyToManyField(Tag)
 
+    class Meta:
+        ordering = ['id']
+
     @property
     def all_tags(self):
         return [tag for tag in self.tags.all()]
@@ -40,7 +43,7 @@ class Location(models.Model):
     lat = models.FloatField()
     lon = models.FloatField()
     geom = GeoJSONField(null=True, blank=True)
-    records = models.ManyToManyField(Record, null=True, blank=True)
+    records = models.ManyToManyField(Record, blank=True)
 
     def __str__(self):
         return str(self.place_id)
