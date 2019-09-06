@@ -59,4 +59,4 @@ class TagViewSet(viewsets.ModelViewSet):
             queryset = Tag.objects.filter(title__istartswith=term)
             return queryset
         
-        raise NotFound
+        return Tag.objects.none()
