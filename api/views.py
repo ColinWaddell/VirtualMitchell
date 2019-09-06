@@ -56,7 +56,7 @@ class TagViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         term = self.request.query_params.get('term', None)
         if term is not None and len(term) > 2:
-            queryset = Tag.objects.filter(title__istartswith=term)
+            queryset = Tag.objects.filter(title__icontains=term)
             return queryset
         
         return Tag.objects.none()
